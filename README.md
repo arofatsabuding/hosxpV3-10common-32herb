@@ -41,7 +41,12 @@ pm2 start ecosystem.config.js
 
 ### 6️⃣ ตั้งให้ PM2 รันอัตโนมัติหลังจากรีบูต
 ```sh
-pm2 startup
+npm install pm2-windows-startup -g
+```
+```sh
+pm2-startup install
+```
+```sh
 pm2 save
 ```
 
