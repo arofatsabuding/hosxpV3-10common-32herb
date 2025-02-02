@@ -2621,6 +2621,7 @@ export default function Thaipadi() {
                   <div className="">
                     <p className="text-[0.25rem] text-center sm:text-sm font-normal text-gray-800">โดย นายอารอฟัต สะบูดิง แพทย์แผนไทยชำนาญการ</p>
                     <p className="text-[0.25rem] text-center sm:text-sm font-normal text-gray-800">โรงพยาบาลสุไหงปาดี จังหวัดนราธิวาส</p>
+                    <p className="text-[0.25rem] text-center sm:text-sm font-normal text-gray-800">ติดต่อวิทยากรการจัดเก็บรายได้ทางการแพทย์แผนไทยได้ที่</p>
                     <p className="text-[0.25rem] text-center sm:text-sm font-normal text-gray-800">tel: 090 209 9333 | e-mail: arofat.sa@gmail.com</p>
                   </div>
                 </div>

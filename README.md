@@ -96,6 +96,8 @@ pm2 delete THAIMED-KPI
 ---
 
 ## 💪 THANK YOU
-**PROJECT BY:** Arofat Sabuding  
-หากมีข้อสงสัย หรือพบปัญหา สามารถติดต่อทีมพัฒนาได้ที่ **<arofat.sa@gmail.com>**
+**PROJECT BY:** Arofat Sabuding 
+หากมีข้อสงสัย หรือพบปัญหา สามารถติดต่อนักพัฒนาได้ที่ 
+Email: **<arofat.sa@gmail.com>**
+โทร:  **<0902099333>**
 
