@@ -32,6 +32,8 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+.env.local
+!.env.example
 
 # vercel
 .vercel
@@ -40,11 +42,6 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# 🔹 Environment Files (ไฟล์ตั้งค่าเฉพาะเครื่อง)
-.env
-.env.local
-.env.development.local
-.env.production.local
 
 # 🔹 ไฟล์ Data ที่ต้องเก็บแยก
 src/data/data.json
