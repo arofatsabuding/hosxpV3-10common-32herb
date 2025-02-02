@@ -1,11 +1,21 @@
 import { promises as fs } from "fs";
 import path from "path";
 
-const filePath = path.join(process.cwd(), "src", "data", "data.json");
+const dataFilePath = path.join(process.cwd(), "src", "data", "data.json");
+const defaultFilePath = path.join(process.cwd(), "src", "data", "data.default.json");
 
 export async function GET() {
   try {
-    const jsonData = await fs.readFile(filePath, "utf-8"); // อ่านไฟล์ JSON
+    let filePathToUse = dataFilePath;
+
+    // ✅ ตรวจสอบว่าไฟล์ data.json มีอยู่จริงหรือไม่
+    try {
+      await fs.access(dataFilePath);
+    } catch {
+      filePathToUse = defaultFilePath; // ❌ ถ้าไม่มี data.json ให้ใช้ data.default.json แทน
+    }
+
+    const jsonData = await fs.readFile(filePathToUse, "utf-8"); // อ่านไฟล์ JSON
     const data = JSON.parse(jsonData); // แปลงเป็น Object
 
     return Response.json(data); // ส่งข้อมูลกลับไป
@@ -17,7 +27,17 @@ export async function GET() {
 export async function PUT(request) {
   try {
     const body = await request.json();
-    const jsonData = await fs.readFile(filePath, "utf-8"); // อ่านไฟล์ JSON ปัจจุบัน
+
+    let filePathToUse = dataFilePath;
+
+    // ✅ ตรวจสอบว่าไฟล์ data.json มีอยู่จริงหรือไม่
+    try {
+      await fs.access(dataFilePath);
+    } catch {
+      filePathToUse = defaultFilePath; // ❌ ถ้าไม่มี data.json ให้ใช้ data.default.json แทน
+    }
+
+    const jsonData = await fs.readFile(filePathToUse, "utf-8"); // อ่านไฟล์ JSON ปัจจุบัน
     let data = JSON.parse(jsonData); // แปลงเป็น Object
 
     // ✅ รายการ key ที่ไม่ต้องแปลงเป็น array (เป็น string, number หรือ object ปกติ)
@@ -35,8 +55,9 @@ export async function PUT(request) {
       }
     });
 
-    // ✅ เขียนกลับไปที่ไฟล์ JSON
-    await fs.writeFile(filePath, JSON.stringify(data, null, 2), "utf-8");
+    // ✅ เขียนกลับไปที่ไฟล์ JSON (เฉพาะ data.json เท่านั้น)
+    await fs.writeFile(dataFilePath, JSON.stringify(data, null, 2), "utf-8");
+
     return Response.json({ message: "Data updated successfully", updatedData: data });
   } catch (error) {
     return Response.json({ error: error.message }, { status: 500 });

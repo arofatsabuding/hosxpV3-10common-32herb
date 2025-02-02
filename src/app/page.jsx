@@ -8,7 +8,8 @@ import "react-datepicker/dist/react-datepicker.css";
 import "@fontsource/sarabun";
 import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";
-import { Dialog, Button, IconButton, TextField, Grid } from "@mui/material";
+import { Dialog, Grid, TextField, Button, Divider, Typography, Card, CardContent, IconButton } from "@mui/material";
+
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import Swal from "sweetalert2";
 
@@ -405,951 +406,995 @@ export default function Thaipadi() {
                     <div className="mb-4">
                       <p className="text-center text-[#02b1a7] text-xl">การตั้งค่า</p>
                     </div>
-                    <p className="text-[#02b1a7] text-base mb-2">
-                      บริการทางการแพทย์แผนไทย
-                    </p>
-                    <Grid container spacing={2} className="mb-4">
-                      <Grid item xs={4} sm={3}>
-                        <TextField
-                          label="รหัสแผนก (mainDep)"
-                          variant="standard"
-                          fullWidth
-                          onChange={(e) => setMainDep(e.target.value)}
-                          value={mainDep}
-                          sx={{
-                            "& .MuiOutlinedInput-root": {
-                              "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
-                            },
-                            "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
-                          }}
-                        />
-                      </Grid>
-                      <Grid item xs={4} sm={3}>
-                        <TextField
-                          label="รหัสหัตถการนวด"
-                          variant="standard"
-                          fullWidth
-                          onChange={(e) => setOic_n(e.target.value)}
-                          value={oic_n}
-                          sx={{
-                            "& .MuiOutlinedInput-root": {
-                              "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
-                            },
-                            "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
-                          }}
-                        />
-                      </Grid>
-                      <Grid item xs={4} sm={3}>
-                        <TextField
-                          label="รหัสหัตถการประคบ"
-                          variant="standard"
-                          fullWidth
-                          onChange={(e) => setOic_c(e.target.value)}
-                          value={oic_c}
-                          sx={{
-                            "& .MuiOutlinedInput-root": {
-                              "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
-                            },
-                            "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
-                          }}
-                        />
-                      </Grid>
-                      <Grid item xs={4} sm={3}>
-                        <TextField
-                          label="รหัสหัตถการอบสมุนไพร"
-                          variant="standard"
-                          fullWidth
-                          onChange={(e) => setOic_o(e.target.value)}
-                          value={oic_o}
-                          sx={{
-                            "& .MuiOutlinedInput-root": {
-                              "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
-                            },
-                            "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
-                          }}
-                        />
-                      </Grid>
-                      <Grid item xs={4} sm={3}>
-                        <TextField
-                          label="รหัสหัตถการหลังคลอด"
-                          variant="standard"
-                          fullWidth
-                          onChange={(e) => setOic_l(e.target.value)}
-                          value={oic_l}
-                          sx={{
-                            "& .MuiOutlinedInput-root": {
-                              "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
-                            },
-                            "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
-                          }}
-                        />
-                      </Grid>
-                      <Grid item xs={4} sm={3}>
-                        <TextField
-                          label="รหัสประเภทการบำบัด"
-                          variant="standard"
-                          fullWidth
-                          onChange={(e) => setOtc_o(e.target.value)}
-                          value={otc_o}
-                          sx={{
-                            "& .MuiOutlinedInput-root": {
-                              "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
-                            },
-                            "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
-                          }}
-                        />
-                      </Grid>
-                      <Grid item xs={4} sm={3}>
-                        <TextField
-                          label="รหัสประเภทการส่งเสริม"
-                          variant="standard"
-                          fullWidth
-                          onChange={(e) => setOtc_l(e.target.value)}
-                          value={otc_l}
-                          sx={{
-                            "& .MuiOutlinedInput-root": {
-                              "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
-                            },
-                            "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
-                          }}
-                        />
-                      </Grid>
-                      <Grid item xs={4} sm={3}>
-                        <TextField
-                          label="pcode สิทธิจ่ายตรง"
-                          variant="standard"
-                          fullWidth
-                          onChange={(e) => setPcodeA2(e.target.value)}
-                          value={pcodeA2}
-                          sx={{
-                            "& .MuiOutlinedInput-root": {
-                              "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
-                            },
-                            "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
-                          }}
-                        />
-                      </Grid>
-                      <Grid item xs={4} sm={3}>
-                        <TextField
-                          label="pcode สิทธิ UC"
-                          variant="standard"
-                          fullWidth
-                          onChange={(e) => setPcodeUC(e.target.value)}
-                          value={pcodeUC}
-                          sx={{
-                            "& .MuiOutlinedInput-root": {
-                              "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
-                            },
-                            "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
-                          }}
-                        />
-                      </Grid>
-                      <Grid item xs={4} sm={3}>
-                        <TextField
-                          label="pcode สิทธิประกันสังคม"
-                          variant="standard"
-                          fullWidth
-                          onChange={(e) => setPcodeA7(e.target.value)}
-                          value={pcodeA7}
-                          sx={{
-                            "& .MuiOutlinedInput-root": {
-                              "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
-                            },
-                            "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
-                          }}
-                        />
-                      </Grid>
-                      <Grid item xs={4} sm={3}>
-                        <TextField
-                          label="รหัสประเภทแพทย์แผนปัจจุบัน"
-                          variant="standard"
-                          fullWidth
-                          onChange={(e) => setProviderCodes01(e.target.value)}
-                          value={providerCodes01}
-                          sx={{
-                            "& .MuiOutlinedInput-root": {
-                              "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
-                            },
-                            "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
-                          }}
-                        />
-                      </Grid>
-                      <Grid item xs={4} sm={3}>
-                        <TextField
-                          label="รหัสประเภทแพทย์แผนไทย"
-                          variant="standard"
-                          fullWidth
-                          onChange={(e) => setProviderCodes081(e.target.value)}
-                          value={providerCodes081}
-                          sx={{
-                            "& .MuiOutlinedInput-root": {
-                              "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
-                            },
-                            "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
-                          }}
-                        />
-                      </Grid>
-                    </Grid>
-                    <p className="text-[#02b1a7] text-base mb-2">
-                      กลุ่มอาการปวดกล้ามเนื้อและปวดข้อ
-                    </p>
-                    <Grid container spacing={2} className="mb-4">
-                      <Grid item xs={16} sm={16}>
-                        <TextField
-                          label="icd10 ตามกลุ่มอาการ"
-                          variant="standard"
-                          fullWidth
-                          onChange={(e) => setIcd10List01(e.target.value)}
-                          value={icd10List01}
-                          sx={{
-                            "& .MuiOutlinedInput-root": {
-                              "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
-                            },
-                            "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
-                          }}
-                        />
-                      </Grid>
-                      <Grid item xs={6} sm={4}>
-                        <TextField
-                          label="icode ไพล"
-                          variant="standard"
-                          fullWidth
-                          onChange={(e) => setPlaiCodes(e.target.value)}
-                          value={plaiCodes}
-                          sx={{
-                            "& .MuiOutlinedInput-root": {
-                              "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
-                            },
-                            "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
-                          }}
-                        />
-                      </Grid>
-                      <Grid item xs={6} sm={4}>
-                        <TextField
-                          label="icode ลูกประคบ"
-                          variant="standard"
-                          fullWidth
-                          onChange={(e) => setPraCodes(e.target.value)}
-                          value={praCodes}
-                          sx={{
-                            "& .MuiOutlinedInput-root": {
-                              "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
-                            },
-                            "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
-                          }}
-                        />
-                      </Grid>
-                      <Grid item xs={6} sm={4}>
-                        <TextField
-                          label="icode เถาวัลย์เปรียง"
-                          variant="standard"
-                          fullWidth
-                          onChange={(e) => setPriangCodes(e.target.value)}
-                          value={priangCodes}
-                          sx={{
-                            "& .MuiOutlinedInput-root": {
-                              "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
-                            },
-                            "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
-                          }}
-                        />
-                      </Grid>
-                      <Grid item xs={6} sm={4}>
-                        <TextField
-                          label="icode สหัสธารา"
-                          variant="standard"
-                          fullWidth
-                          onChange={(e) => setTaraCodes(e.target.value)}
-                          value={taraCodes}
-                          sx={{
-                            "& .MuiOutlinedInput-root": {
-                              "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
-                            },
-                            "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
-                          }}
-                        />
-                      </Grid>
-                      <Grid item xs={6} sm={4}>
-                        <TextField
-                          label="icode พริก"
-                          variant="standard"
-                          fullWidth
-                          onChange={(e) => setPrikCodes(e.target.value)}
-                          value={prikCodes}
-                          sx={{
-                            "& .MuiOutlinedInput-root": {
-                              "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
-                            },
-                            "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
-                          }}
-                        />
-                      </Grid>
-                    </Grid>
-                    <p className="text-[#02b1a7] text-base mb-2">
-                      กลุ่มอาการไข้หวัด ไอ เสมหะ โควิด-19
-                    </p>
-                    <Grid container spacing={2} className="mb-4">
-                      <Grid item xs={16} sm={16}>
-                        <TextField
-                          label="icd10 ตามกลุ่มอาการ"
-                          variant="standard"
-                          fullWidth
-                          onChange={(e) => setIcd10List02(e.target.value)}
-                          value={icd10List02}
-                          sx={{
-                            "& .MuiOutlinedInput-root": {
-                              "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
-                            },
-                            "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
-                          }}
-                        />
-                      </Grid>
-                      <Grid item xs={6} sm={4}>
-                        <TextField
-                          label="icode ฟ้าทะลายโจร"
-                          variant="standard"
-                          fullWidth
-                          onChange={(e) => setFahCodes(e.target.value)}
-                          value={fahCodes}
-                          sx={{
-                            "& .MuiOutlinedInput-root": {
-                              "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
-                            },
-                            "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
-                          }}
-                        />
-                      </Grid>
-                      <Grid item xs={6} sm={4}>
-                        <TextField
-                          label="icode ประสะมะแว้ง"
-                          variant="standard"
-                          fullWidth
-                          onChange={(e) => setMaweangCodes(e.target.value)}
-                          value={maweangCodes}
-                          sx={{
-                            "& .MuiOutlinedInput-root": {
-                              "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
-                            },
-                            "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
-                          }}
-                        />
-                      </Grid>
-                      <Grid item xs={6} sm={4}>
-                        <TextField
-                          label="icode ยาแก้ไอมะขามป้อม"
-                          variant="standard"
-                          fullWidth
-                          onChange={(e) => setPomCodes(e.target.value)}
-                          value={pomCodes}
-                          sx={{
-                            "& .MuiOutlinedInput-root": {
-                              "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
-                            },
-                            "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
-                          }}
-                        />
-                      </Grid>
-                      <Grid item xs={6} sm={4}>
-                        <TextField
-                          label="icode ตรีผลา"
-                          variant="standard"
-                          fullWidth
-                          onChange={(e) => setTreeplaCodes(e.target.value)}
-                          value={treeplaCodes}
-                          sx={{
-                            "& .MuiOutlinedInput-root": {
-                              "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
-                            },
-                            "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
-                          }}
-                        />
-                      </Grid>
-                      <Grid item xs={6} sm={4}>
-                        <TextField
-                          label="icode ยาปราบชมพูทวีป"
-                          variant="standard"
-                          fullWidth
-                          onChange={(e) => setPrapCodes(e.target.value)}
-                          value={prapCodes}
-                          sx={{
-                            "& .MuiOutlinedInput-root": {
-                              "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
-                            },
-                            "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
-                          }}
-                        />
-                      </Grid>
-                    </Grid>
-                    <p className="text-[#02b1a7] text-base mb-2">
-                      กลุ่มอาการท้องอืด ท้องเฟ้อ
-                    </p>
-                    <Grid container spacing={2} className="mb-4">
-                      <Grid item xs={16} sm={16}>
-                        <TextField
-                          label="icd10 ตามกลุ่มอาการ"
-                          variant="standard"
-                          fullWidth
-                          onChange={(e) => setIcd10List03(e.target.value)}
-                          value={icd10List03}
-                          sx={{
-                            "& .MuiOutlinedInput-root": {
-                              "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
-                            },
-                            "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
-                          }}
-                        />
-                      </Grid>
-                      <Grid item xs={6} sm={4}>
-                        <TextField
-                          label="icode ขมิ้นชัน"
-                          variant="standard"
-                          fullWidth
-                          onChange={(e) => setCuminCodes(e.target.value)}
-                          value={cuminCodes}
-                          sx={{
-                            "& .MuiOutlinedInput-root": {
-                              "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
-                            },
-                            "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
-                          }}
-                        />
-                      </Grid>
-                      <Grid item xs={6} sm={4}>
-                        <TextField
-                          label="icode ธาตุอบเชย"
-                          variant="standard"
-                          fullWidth
-                          onChange={(e) => setTardCodes(e.target.value)}
-                          value={tardCodes}
-                          sx={{
-                            "& .MuiOutlinedInput-root": {
-                              "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
-                            },
-                            "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
-                          }}
-                        />
-                      </Grid>
-                      <Grid item xs={6} sm={4}>
-                        <TextField
-                          label="icode ขิง"
-                          variant="standard"
-                          fullWidth
-                          onChange={(e) => setKhingCodes(e.target.value)}
-                          value={khingCodes}
-                          sx={{
-                            "& .MuiOutlinedInput-root": {
-                              "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
-                            },
-                            "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
-                          }}
-                        />
-                      </Grid>
-                    </Grid>
-                    <p className="text-[#02b1a7] text-base mb-2">
-                      กลุ่มอาการริดสีดวงทวารหนัก
-                    </p>
-                    <Grid container spacing={2} className="mb-4">
-                      <Grid item xs={16} sm={16}>
-                        <TextField
-                          label="icd10 ตามกลุ่มอาการ"
-                          variant="standard"
-                          fullWidth
-                          onChange={(e) => setIcd10List041(e.target.value)}
-                          value={icd10List041}
-                          sx={{
-                            "& .MuiOutlinedInput-root": {
-                              "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
-                            },
-                            "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
-                          }}
-                        />
-                      </Grid>
-                      <Grid item xs={6} sm={4}>
-                        <TextField
-                          label="icode ยาเพชรสังฆาต"
-                          variant="standard"
-                          fullWidth
-                          onChange={(e) => setPetCodes(e.target.value)}
-                          value={petCodes}
-                          sx={{
-                            "& .MuiOutlinedInput-root": {
-                              "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
-                            },
-                            "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
-                          }}
-                        />
-                      </Grid>
-                    </Grid>
-                    <p className="text-[#02b1a7] text-base mb-2">
-                      กลุ่มอาการท้องผูก
-                    </p>
-                    <Grid container spacing={2} className="mb-4">
-                      <Grid item xs={16} sm={16}>
-                        <TextField
-                          label="icd10 ตามกลุ่มอาการ"
-                          variant="standard"
-                          fullWidth
-                          onChange={(e) => setIcd10List042(e.target.value)}
-                          value={icd10List042}
-                          sx={{
-                            "& .MuiOutlinedInput-root": {
-                              "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
-                            },
-                            "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
-                          }}
-                        />
-                      </Grid>
-                      <Grid item xs={6} sm={4}>
-                        <TextField
-                          label="icode มะขามแขก"
-                          variant="standard"
-                          fullWidth
-                          onChange={(e) => setKotCodes(e.target.value)}
-                          value={kotCodes}
-                          sx={{
-                            "& .MuiOutlinedInput-root": {
-                              "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
-                            },
-                            "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
-                          }}
-                        />
-                      </Grid>
-                    </Grid>
-                    <p className="text-[#02b1a7] text-base mb-2">
-                      กลุ่มอาการวิงเวียน/คลื่นไส้ อาเจียน
-                    </p>
-                    <Grid container spacing={2} className="mb-4">
-                      <Grid item xs={16} sm={16}>
-                        <TextField
-                          label="icd10 ตามกลุ่มอาการ"
-                          variant="standard"
-                          fullWidth
-                          onChange={(e) => setIcd10List05(e.target.value)}
-                          value={icd10List05}
-                          sx={{
-                            "& .MuiOutlinedInput-root": {
-                              "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
-                            },
-                            "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
-                          }}
-                        />
-                      </Grid>
-                      <Grid item xs={6} sm={4}>
-                        <TextField
-                          label="icode ยาขิง"
-                          variant="standard"
-                          fullWidth
-                          onChange={(e) => setKhingCodes(e.target.value)}
-                          value={khingCodes}
-                          sx={{
-                            "& .MuiOutlinedInput-root": {
-                              "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
-                            },
-                            "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
-                          }}
-                        />
-                      </Grid>
-                      <Grid item xs={6} sm={4}>
-                        <TextField
-                          label="icode ยาหอมนวโกฐ"
-                          variant="standard"
-                          fullWidth
-                          onChange={(e) => setNawakotCodes(e.target.value)}
-                          value={nawakotCodes}
-                          sx={{
-                            "& .MuiOutlinedInput-root": {
-                              "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
-                            },
-                            "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
-                          }}
-                        />
-                      </Grid>
-                      <Grid item xs={6} sm={4}>
-                        <TextField
-                          label="icode ยาหอมอินทจักร์"
-                          variant="standard"
-                          fullWidth
-                          onChange={(e) => setIntjakCodes(e.target.value)}
-                          value={intjakCodes}
-                          sx={{
-                            "& .MuiOutlinedInput-root": {
-                              "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
-                            },
-                            "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
-                          }}
-                        />
-                      </Grid>
-                    </Grid>
-                    <p className="text-[#02b1a7] text-base mb-2">
-                      กลุ่มอาการชาจากอัมพฤกษ์-อัมพาต
-                    </p>
-                    <Grid container spacing={2} className="mb-4">
-                      <Grid item xs={16} sm={16}>
-                        <TextField
-                          label="icd10 ตามกลุ่มอาการ"
-                          variant="standard"
-                          fullWidth
-                          onChange={(e) => setIcd10List06(e.target.value)}
-                          value={icd10List06}
-                          sx={{
-                            "& .MuiOutlinedInput-root": {
-                              "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
-                            },
-                            "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
-                          }}
-                        />
-                      </Grid>
-                      <Grid item xs={6} sm={4}>
-                        <TextField
-                          label="icode ตำรับยาแก้ลมแก้เส้น"
-                          variant="standard"
-                          fullWidth
-                          onChange={(e) => setLomCodes(e.target.value)}
-                          value={lomCodes}
-                          sx={{
-                            "& .MuiOutlinedInput-root": {
-                              "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
-                            },
-                            "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
-                          }}
-                        />
-                      </Grid>
-                      <Grid item xs={6} sm={4}>
-                        <TextField
-                          label="icode ยาทำลายพระสุเมรุ"
-                          variant="standard"
-                          fullWidth
-                          onChange={(e) => setTamlaiCodes(e.target.value)}
-                          value={tamlaiCodes}
-                          sx={{
-                            "& .MuiOutlinedInput-root": {
-                              "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
-                            },
-                            "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
-                          }}
-                        />
-                      </Grid>
-                    </Grid>
-                    <p className="text-[#02b1a7] text-base mb-2">
-                      กลุ่มอาการทางผิวหนังและแผล_1
-                    </p>
-                    <Grid container spacing={2} className="mb-4">
-                      <Grid item xs={16} sm={16}>
-                        <TextField
-                          label="icd10 ตามกลุ่มอาการ_พยายอ"
-                          variant="standard"
-                          fullWidth
-                          onChange={(e) => setIcd10List071(e.target.value)}
-                          value={icd10List071}
-                          sx={{
-                            "& .MuiOutlinedInput-root": {
-                              "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
-                            },
-                            "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
-                          }}
-                        />
-                      </Grid>
-                      <Grid item xs={6} sm={4}>
-                        <TextField
-                          label="icode พยายอ"
-                          variant="standard"
-                          fullWidth
-                          onChange={(e) => setPayayoCodes(e.target.value)}
-                          value={payayoCodes}
-                          sx={{
-                            "& .MuiOutlinedInput-root": {
-                              "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
-                            },
-                            "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
-                          }}
-                        />
-                      </Grid>
-                    </Grid>
-                    <p className="text-[#02b1a7] text-base mb-2">
-                      กลุ่มอาการทางผิวหนังและแผล_2
-                    </p>
-                    <Grid container spacing={2} className="mb-4">
-                      <Grid item xs={16} sm={16}>
-                        <TextField
-                          label="icd10 ตามกลุ่มอาการ_ว่านหางจระเข้"
-                          variant="standard"
-                          fullWidth
-                          onChange={(e) => setIcd10List072(e.target.value)}
-                          value={icd10List072}
-                          sx={{
-                            "& .MuiOutlinedInput-root": {
-                              "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
-                            },
-                            "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
-                          }}
-                        />
-                      </Grid>
-                      <Grid item xs={6} sm={4}>
-                        <TextField
-                          label="icode ว่านหางจระเข้"
-                          variant="standard"
-                          fullWidth
-                          onChange={(e) => setAloCodes(e.target.value)}
-                          value={aloCodes}
-                          sx={{
-                            "& .MuiOutlinedInput-root": {
-                              "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
-                            },
-                            "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
-                          }}
-                        />
-                      </Grid>
-                    </Grid>
-                    <p className="text-[#02b1a7] text-base mb-2">
-                      กลุ่มอาการทางผิวหนังและแผล_3
-                    </p>
-                    <Grid container spacing={2} className="mb-4">
-                      <Grid item xs={16} sm={16}>
-                        <TextField
-                          label="icd10 ตามกลุ่มอาการ_ยาเปลือกมังคุด"
-                          variant="standard"
-                          fullWidth
-                          onChange={(e) => setIcd10List073(e.target.value)}
-                          value={icd10List073}
-                          sx={{
-                            "& .MuiOutlinedInput-root": {
-                              "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
-                            },
-                            "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
-                          }}
-                        />
-                      </Grid>
-                      <Grid item xs={6} sm={4}>
-                        <TextField
-                          label="icode ยาเปลือกมังคุด"
-                          variant="standard"
-                          fullWidth
-                          onChange={(e) => setMangosteenCodes(e.target.value)}
-                          value={mangosteenCodes}
-                          sx={{
-                            "& .MuiOutlinedInput-root": {
-                              "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
-                            },
-                            "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
-                          }}
-                        />
-                      </Grid>
-                    </Grid>
-                    <p className="text-[#02b1a7] text-base mb-2">
-                      กลุ่มอาการทางผิวหนังและแผล_4
-                    </p>
-                    <Grid container spacing={2} className="mb-4">
-                      <Grid item xs={16} sm={16}>
-                        <TextField
-                          label="icd10 ตามกลุ่มอาการ_ยาทิงเจอร์ทองพันชั่ง"
-                          variant="standard"
-                          fullWidth
-                          onChange={(e) => setIcd10List074(e.target.value)}
-                          value={icd10List074}
-                          sx={{
-                            "& .MuiOutlinedInput-root": {
-                              "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
-                            },
-                            "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
-                          }}
-                        />
-                      </Grid>
-                      <Grid item xs={6} sm={4}>
-                        <TextField
-                          label="icode ยาทิงเจอร์ทองพันชั่ง"
-                          variant="standard"
-                          fullWidth
-                          onChange={(e) => setThongCodes(e.target.value)}
-                          value={thongCodes}
-                          sx={{
-                            "& .MuiOutlinedInput-root": {
-                              "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
-                            },
-                            "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
-                          }}
-                        />
-                      </Grid>
-                    </Grid>
-                    <p className="text-[#02b1a7] text-base mb-2">
-                      อาการนอนไม่หลับ
-                    </p>
-                    <Grid container spacing={2} className="mb-4">
-                      <Grid item xs={16} sm={16}>
-                        <TextField
-                          label="icd10 ตามกลุ่มอาการ"
-                          variant="standard"
-                          fullWidth
-                          onChange={(e) => setIcd10List08(e.target.value)}
-                          value={icd10List08}
-                          sx={{
-                            "& .MuiOutlinedInput-root": {
-                              "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
-                            },
-                            "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
-                          }}
-                        />
-                      </Grid>
-                      <Grid item xs={6} sm={4}>
-                        <TextField
-                          label="icode ยาศุขไสยาศน์"
-                          variant="standard"
-                          fullWidth
-                          onChange={(e) => setSuksaiCodes(e.target.value)}
-                          value={suksaiCodes}
-                          sx={{
-                            "& .MuiOutlinedInput-root": {
-                              "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
-                            },
-                            "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
-                          }}
-                        />
-                      </Grid>
-                      <Grid item xs={6} sm={4}>
-                        <TextField
-                          label="icode ยาหอมเทพจิตร"
-                          variant="standard"
-                          fullWidth
-                          onChange={(e) => setJitCodes(e.target.value)}
-                          value={jitCodes}
-                          sx={{
-                            "& .MuiOutlinedInput-root": {
-                              "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
-                            },
-                            "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
-                          }}
-                        />
-                      </Grid>
-                      <Grid item xs={6} sm={4}>
-                        <TextField
-                          label="icode น้ำมันกัญชา THC 20 mg/ml"
-                          variant="standard"
-                          fullWidth
-                          onChange={(e) => setThcCodes(e.target.value)}
-                          value={thcCodes}
-                          sx={{
-                            "& .MuiOutlinedInput-root": {
-                              "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
-                            },
-                            "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
-                          }}
-                        />
-                      </Grid>
-                    </Grid>
-                    <p className="text-[#02b1a7] text-base mb-2">
-                      กลุ่มอาการท้องเสีย
-                    </p>
-                    <Grid container spacing={2} className="mb-4">
-                      <Grid item xs={16} sm={16}>
-                        <TextField
-                          label="icd10 ตามกลุ่มอาการ"
-                          variant="standard"
-                          fullWidth
-                          onChange={(e) => setIcd10List09(e.target.value)}
-                          value={icd10List09}
-                          sx={{
-                            "& .MuiOutlinedInput-root": {
-                              "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
-                            },
-                            "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
-                          }}
-                        />
-                      </Grid>
-                      <Grid item xs={6} sm={4}>
-                        <TextField
-                          label="icode ฟ้าทะลายโจร"
-                          variant="standard"
-                          fullWidth
-                          onChange={(e) => setFahCodes(e.target.value)}
-                          value={fahCodes}
-                          sx={{
-                            "& .MuiOutlinedInput-root": {
-                              "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
-                            },
-                            "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
-                          }}
-                        />
-                      </Grid>
-                      <Grid item xs={6} sm={4}>
-                        <TextField
-                          label="icode ยากล้วย"
-                          variant="standard"
-                          fullWidth
-                          onChange={(e) => setBananaCodes(e.target.value)}
-                          value={bananaCodes}
-                          sx={{
-                            "& .MuiOutlinedInput-root": {
-                              "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
-                            },
-                            "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
-                          }}
-                        />
-                      </Grid>
-                      <Grid item xs={6} sm={4}>
-                        <TextField
-                          label="icode ยาเหลืองปิดสมุทร"
-                          variant="standard"
-                          fullWidth
-                          onChange={(e) => setYellowCodes(e.target.value)}
-                          value={yellowCodes}
-                          sx={{
-                            "& .MuiOutlinedInput-root": {
-                              "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
-                            },
-                            "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
-                          }}
-                        />
-                      </Grid>
-                    </Grid>
-                    <p className="text-[#02b1a7] text-base mb-2">
-                      กลุ่มอาการเบื่ออาหาร
-                    </p>
-                    <Grid container spacing={2} className="mb-4">
-                      <Grid item xs={16} sm={16}>
-                        <TextField
-                          label="icd10 ตามกลุ่มอาการ"
-                          variant="standard"
-                          fullWidth
-                          onChange={(e) => setIcd10List10(e.target.value)}
-                          value={icd10List10}
-                          sx={{
-                            "& .MuiOutlinedInput-root": {
-                              "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
-                            },
-                            "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
-                          }}
-                        />
-                      </Grid>
-                      <Grid item xs={6} sm={4}>
-                        <TextField
-                          label="icode ยามะระขี้นก"
-                          variant="standard"
-                          fullWidth
-                          onChange={(e) => setMaraCodes(e.target.value)}
-                          value={maraCodes}
-                          sx={{
-                            "& .MuiOutlinedInput-root": {
-                              "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
-                            },
-                            "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
-                          }}
-                        />
-                      </Grid>
-                      <Grid item xs={6} sm={4}>
-                        <TextField
-                          label="icode น้ำมันกัญชา THC 20 mg/ml"
-                          variant="standard"
-                          fullWidth
-                          onChange={(e) => setThcCodes(e.target.value)}
-                          value={thcCodes}
-                          sx={{
-                            "& .MuiOutlinedInput-root": {
-                              "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
-                            },
-                            "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
-                          }}
-                        />
-                      </Grid>
-                    </Grid>
+                    <Card sx={{ mb: 3 }}>
+                      <CardContent>
+                        <p className="text-[#02b1a7] text-base mb-2">
+                          บริการทางการแพทย์แผนไทย
+                        </p>
+                        <Grid container spacing={2} className="mb-2">
+                          <Grid item xs={4} sm={3}>
+                            <TextField
+                              label="รหัสแผนก (mainDep)"
+                              variant="standard"
+                              fullWidth
+                              onChange={(e) => setMainDep(e.target.value)}
+                              value={mainDep}
+                              sx={{
+                                "& .MuiOutlinedInput-root": {
+                                  "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
+                                },
+                                "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
+                              }}
+                            />
+                          </Grid>
+                          <Grid item xs={4} sm={3}>
+                            <TextField
+                              label="รหัสหัตถการนวด"
+                              variant="standard"
+                              fullWidth
+                              onChange={(e) => setOic_n(e.target.value)}
+                              value={oic_n}
+                              sx={{
+                                "& .MuiOutlinedInput-root": {
+                                  "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
+                                },
+                                "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
+                              }}
+                            />
+                          </Grid>
+                          <Grid item xs={4} sm={3}>
+                            <TextField
+                              label="รหัสหัตถการประคบ"
+                              variant="standard"
+                              fullWidth
+                              onChange={(e) => setOic_c(e.target.value)}
+                              value={oic_c}
+                              sx={{
+                                "& .MuiOutlinedInput-root": {
+                                  "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
+                                },
+                                "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
+                              }}
+                            />
+                          </Grid>
+                          <Grid item xs={4} sm={3}>
+                            <TextField
+                              label="รหัสหัตถการอบสมุนไพร"
+                              variant="standard"
+                              fullWidth
+                              onChange={(e) => setOic_o(e.target.value)}
+                              value={oic_o}
+                              sx={{
+                                "& .MuiOutlinedInput-root": {
+                                  "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
+                                },
+                                "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
+                              }}
+                            />
+                          </Grid>
+                          <Grid item xs={4} sm={3}>
+                            <TextField
+                              label="รหัสหัตถการทับหม้อเกลือ"
+                              variant="standard"
+                              fullWidth
+                              onChange={(e) => setOic_l(e.target.value)}
+                              value={oic_l}
+                              sx={{
+                                "& .MuiOutlinedInput-root": {
+                                  "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
+                                },
+                                "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
+                              }}
+                            />
+                          </Grid>
+                          <Grid item xs={4} sm={3}>
+                            <TextField
+                              label="รหัสประเภทการบำบัด"
+                              variant="standard"
+                              fullWidth
+                              onChange={(e) => setOtc_o(e.target.value)}
+                              value={otc_o}
+                              sx={{
+                                "& .MuiOutlinedInput-root": {
+                                  "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
+                                },
+                                "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
+                              }}
+                            />
+                          </Grid>
+                          <Grid item xs={4} sm={3}>
+                            <TextField
+                              label="รหัสประเภทการส่งเสริม"
+                              variant="standard"
+                              fullWidth
+                              onChange={(e) => setOtc_l(e.target.value)}
+                              value={otc_l}
+                              sx={{
+                                "& .MuiOutlinedInput-root": {
+                                  "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
+                                },
+                                "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
+                              }}
+                            />
+                          </Grid>
+                          <Grid item xs={4} sm={3}>
+                            <TextField
+                              label="pcode สิทธิจ่ายตรง"
+                              variant="standard"
+                              fullWidth
+                              onChange={(e) => setPcodeA2(e.target.value)}
+                              value={pcodeA2}
+                              sx={{
+                                "& .MuiOutlinedInput-root": {
+                                  "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
+                                },
+                                "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
+                              }}
+                            />
+                          </Grid>
+                          <Grid item xs={4} sm={3}>
+                            <TextField
+                              label="pcode สิทธิ UC"
+                              variant="standard"
+                              fullWidth
+                              onChange={(e) => setPcodeUC(e.target.value)}
+                              value={pcodeUC}
+                              sx={{
+                                "& .MuiOutlinedInput-root": {
+                                  "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
+                                },
+                                "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
+                              }}
+                            />
+                          </Grid>
+                          <Grid item xs={4} sm={3}>
+                            <TextField
+                              label="pcode สิทธิประกันสังคม"
+                              variant="standard"
+                              fullWidth
+                              onChange={(e) => setPcodeA7(e.target.value)}
+                              value={pcodeA7}
+                              sx={{
+                                "& .MuiOutlinedInput-root": {
+                                  "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
+                                },
+                                "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
+                              }}
+                            />
+                          </Grid>
+                          <Grid item xs={4} sm={3}>
+                            <TextField
+                              label="รหัสประเภทแพทย์แผนปัจจุบัน"
+                              variant="standard"
+                              fullWidth
+                              onChange={(e) => setProviderCodes01(e.target.value)}
+                              value={providerCodes01}
+                              sx={{
+                                "& .MuiOutlinedInput-root": {
+                                  "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
+                                },
+                                "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
+                              }}
+                            />
+                          </Grid>
+                          <Grid item xs={4} sm={3}>
+                            <TextField
+                              label="รหัสประเภทแพทย์แผนไทย"
+                              variant="standard"
+                              fullWidth
+                              onChange={(e) => setProviderCodes081(e.target.value)}
+                              value={providerCodes081}
+                              sx={{
+                                "& .MuiOutlinedInput-root": {
+                                  "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
+                                },
+                                "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
+                              }}
+                            />
+                          </Grid>
+                        </Grid>
+                      </CardContent>
+                    </Card>
+                    <Card sx={{ mb: 3 }}>
+                      <CardContent>
+                        <p className="text-[#02b1a7] text-base mb-2">
+                          กลุ่มอาการปวดกล้ามเนื้อและปวดข้อ
+                        </p>
+                        <Grid container spacing={2} className="mb-2">
+                          <Grid item xs={16} sm={16}>
+                            <TextField
+                              label="icd10 ตามกลุ่มอาการ"
+                              variant="standard"
+                              fullWidth
+                              onChange={(e) => setIcd10List01(e.target.value)}
+                              value={icd10List01}
+                              sx={{
+                                "& .MuiOutlinedInput-root": {
+                                  "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
+                                },
+                                "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
+                              }}
+                            />
+                          </Grid>
+                          <Grid item xs={6} sm={4}>
+                            <TextField
+                              label="icode ไพล"
+                              variant="standard"
+                              fullWidth
+                              onChange={(e) => setPlaiCodes(e.target.value)}
+                              value={plaiCodes}
+                              sx={{
+                                "& .MuiOutlinedInput-root": {
+                                  "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
+                                },
+                                "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
+                              }}
+                            />
+                          </Grid>
+                          <Grid item xs={6} sm={4}>
+                            <TextField
+                              label="icode ลูกประคบ"
+                              variant="standard"
+                              fullWidth
+                              onChange={(e) => setPraCodes(e.target.value)}
+                              value={praCodes}
+                              sx={{
+                                "& .MuiOutlinedInput-root": {
+                                  "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
+                                },
+                                "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
+                              }}
+                            />
+                          </Grid>
+                          <Grid item xs={6} sm={4}>
+                            <TextField
+                              label="icode เถาวัลย์เปรียง"
+                              variant="standard"
+                              fullWidth
+                              onChange={(e) => setPriangCodes(e.target.value)}
+                              value={priangCodes}
+                              sx={{
+                                "& .MuiOutlinedInput-root": {
+                                  "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
+                                },
+                                "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
+                              }}
+                            />
+                          </Grid>
+                          <Grid item xs={6} sm={4}>
+                            <TextField
+                              label="icode สหัสธารา"
+                              variant="standard"
+                              fullWidth
+                              onChange={(e) => setTaraCodes(e.target.value)}
+                              value={taraCodes}
+                              sx={{
+                                "& .MuiOutlinedInput-root": {
+                                  "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
+                                },
+                                "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
+                              }}
+                            />
+                          </Grid>
+                          <Grid item xs={6} sm={4}>
+                            <TextField
+                              label="icode พริก"
+                              variant="standard"
+                              fullWidth
+                              onChange={(e) => setPrikCodes(e.target.value)}
+                              value={prikCodes}
+                              sx={{
+                                "& .MuiOutlinedInput-root": {
+                                  "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
+                                },
+                                "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
+                              }}
+                            />
+                          </Grid>
+                        </Grid>
+                      </CardContent>
+                    </Card>
+                    <Card sx={{ mb: 3 }}>
+                      <CardContent>
+                        <p className="text-[#02b1a7] text-base mb-2">
+                          กลุ่มอาการไข้หวัด ไอ เสมหะ โควิด-19
+                        </p>
+                        <Grid container spacing={2} className="mb-2">
+                          <Grid item xs={16} sm={16}>
+                            <TextField
+                              label="icd10 ตามกลุ่มอาการ"
+                              variant="standard"
+                              fullWidth
+                              onChange={(e) => setIcd10List02(e.target.value)}
+                              value={icd10List02}
+                              sx={{
+                                "& .MuiOutlinedInput-root": {
+                                  "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
+                                },
+                                "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
+                              }}
+                            />
+                          </Grid>
+                          <Grid item xs={6} sm={4}>
+                            <TextField
+                              label="icode ฟ้าทะลายโจร"
+                              variant="standard"
+                              fullWidth
+                              onChange={(e) => setFahCodes(e.target.value)}
+                              value={fahCodes}
+                              sx={{
+                                "& .MuiOutlinedInput-root": {
+                                  "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
+                                },
+                                "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
+                              }}
+                            />
+                          </Grid>
+                          <Grid item xs={6} sm={4}>
+                            <TextField
+                              label="icode ประสะมะแว้ง"
+                              variant="standard"
+                              fullWidth
+                              onChange={(e) => setMaweangCodes(e.target.value)}
+                              value={maweangCodes}
+                              sx={{
+                                "& .MuiOutlinedInput-root": {
+                                  "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
+                                },
+                                "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
+                              }}
+                            />
+                          </Grid>
+                          <Grid item xs={6} sm={4}>
+                            <TextField
+                              label="icode ยาแก้ไอมะขามป้อม"
+                              variant="standard"
+                              fullWidth
+                              onChange={(e) => setPomCodes(e.target.value)}
+                              value={pomCodes}
+                              sx={{
+                                "& .MuiOutlinedInput-root": {
+                                  "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
+                                },
+                                "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
+                              }}
+                            />
+                          </Grid>
+                          <Grid item xs={6} sm={4}>
+                            <TextField
+                              label="icode ตรีผลา"
+                              variant="standard"
+                              fullWidth
+                              onChange={(e) => setTreeplaCodes(e.target.value)}
+                              value={treeplaCodes}
+                              sx={{
+                                "& .MuiOutlinedInput-root": {
+                                  "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
+                                },
+                                "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
+                              }}
+                            />
+                          </Grid>
+                          <Grid item xs={6} sm={4}>
+                            <TextField
+                              label="icode ยาปราบชมพูทวีป"
+                              variant="standard"
+                              fullWidth
+                              onChange={(e) => setPrapCodes(e.target.value)}
+                              value={prapCodes}
+                              sx={{
+                                "& .MuiOutlinedInput-root": {
+                                  "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
+                                },
+                                "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
+                              }}
+                            />
+                          </Grid>
+                        </Grid>
+                      </CardContent>
+                    </Card>
+                    <Card sx={{ mb: 3 }}>
+                      <CardContent>
+                        <p className="text-[#02b1a7] text-base mb-2">
+                          กลุ่มอาการท้องอืด ท้องเฟ้อ
+                        </p>
+                        <Grid container spacing={2} className="mb-2">
+                          <Grid item xs={16} sm={16}>
+                            <TextField
+                              label="icd10 ตามกลุ่มอาการ"
+                              variant="standard"
+                              fullWidth
+                              onChange={(e) => setIcd10List03(e.target.value)}
+                              value={icd10List03}
+                              sx={{
+                                "& .MuiOutlinedInput-root": {
+                                  "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
+                                },
+                                "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
+                              }}
+                            />
+                          </Grid>
+                          <Grid item xs={6} sm={4}>
+                            <TextField
+                              label="icode ขมิ้นชัน"
+                              variant="standard"
+                              fullWidth
+                              onChange={(e) => setCuminCodes(e.target.value)}
+                              value={cuminCodes}
+                              sx={{
+                                "& .MuiOutlinedInput-root": {
+                                  "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
+                                },
+                                "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
+                              }}
+                            />
+                          </Grid>
+                          <Grid item xs={6} sm={4}>
+                            <TextField
+                              label="icode ธาตุอบเชย"
+                              variant="standard"
+                              fullWidth
+                              onChange={(e) => setTardCodes(e.target.value)}
+                              value={tardCodes}
+                              sx={{
+                                "& .MuiOutlinedInput-root": {
+                                  "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
+                                },
+                                "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
+                              }}
+                            />
+                          </Grid>
+                          <Grid item xs={6} sm={4}>
+                            <TextField
+                              label="icode ขิง"
+                              variant="standard"
+                              fullWidth
+                              onChange={(e) => setKhingCodes(e.target.value)}
+                              value={khingCodes}
+                              sx={{
+                                "& .MuiOutlinedInput-root": {
+                                  "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
+                                },
+                                "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
+                              }}
+                            />
+                          </Grid>
+                        </Grid>
+                      </CardContent>
+                    </Card>
+                    <Card sx={{ mb: 3 }}>
+                      <CardContent>
+                        <p className="text-[#02b1a7] text-base mb-2">
+                          กลุ่มอาการริดสีดวงทวารหนัก
+                        </p>
+                        <Grid container spacing={2} className="mb-2">
+                          <Grid item xs={16} sm={16}>
+                            <TextField
+                              label="icd10 ตามกลุ่มอาการ"
+                              variant="standard"
+                              fullWidth
+                              onChange={(e) => setIcd10List041(e.target.value)}
+                              value={icd10List041}
+                              sx={{
+                                "& .MuiOutlinedInput-root": {
+                                  "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
+                                },
+                                "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
+                              }}
+                            />
+                          </Grid>
+                          <Grid item xs={6} sm={4}>
+                            <TextField
+                              label="icode ยาเพชรสังฆาต"
+                              variant="standard"
+                              fullWidth
+                              onChange={(e) => setPetCodes(e.target.value)}
+                              value={petCodes}
+                              sx={{
+                                "& .MuiOutlinedInput-root": {
+                                  "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
+                                },
+                                "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
+                              }}
+                            />
+                          </Grid>
+                        </Grid>
+                        <p className="text-[#02b1a7] text-base mb-2">
+                          กลุ่มอาการท้องผูก
+                        </p>
+                        <Grid container spacing={2} className="mb-2">
+                          <Grid item xs={16} sm={16}>
+                            <TextField
+                              label="icd10 ตามกลุ่มอาการ"
+                              variant="standard"
+                              fullWidth
+                              onChange={(e) => setIcd10List042(e.target.value)}
+                              value={icd10List042}
+                              sx={{
+                                "& .MuiOutlinedInput-root": {
+                                  "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
+                                },
+                                "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
+                              }}
+                            />
+                          </Grid>
+                          <Grid item xs={6} sm={4}>
+                            <TextField
+                              label="icode มะขามแขก"
+                              variant="standard"
+                              fullWidth
+                              onChange={(e) => setKotCodes(e.target.value)}
+                              value={kotCodes}
+                              sx={{
+                                "& .MuiOutlinedInput-root": {
+                                  "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
+                                },
+                                "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
+                              }}
+                            />
+                          </Grid>
+                        </Grid>
+                      </CardContent>
+                    </Card>
+                    <Card sx={{ mb: 3 }}>
+                      <CardContent>
+                        <p className="text-[#02b1a7] text-base mb-2">
+                          กลุ่มอาการวิงเวียน/คลื่นไส้ อาเจียน
+                        </p>
+                        <Grid container spacing={2} className="mb-2">
+                          <Grid item xs={16} sm={16}>
+                            <TextField
+                              label="icd10 ตามกลุ่มอาการ"
+                              variant="standard"
+                              fullWidth
+                              onChange={(e) => setIcd10List05(e.target.value)}
+                              value={icd10List05}
+                              sx={{
+                                "& .MuiOutlinedInput-root": {
+                                  "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
+                                },
+                                "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
+                              }}
+                            />
+                          </Grid>
+                          <Grid item xs={6} sm={4}>
+                            <TextField
+                              label="icode ยาขิง"
+                              variant="standard"
+                              fullWidth
+                              onChange={(e) => setKhingCodes(e.target.value)}
+                              value={khingCodes}
+                              sx={{
+                                "& .MuiOutlinedInput-root": {
+                                  "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
+                                },
+                                "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
+                              }}
+                            />
+                          </Grid>
+                          <Grid item xs={6} sm={4}>
+                            <TextField
+                              label="icode ยาหอมนวโกฐ"
+                              variant="standard"
+                              fullWidth
+                              onChange={(e) => setNawakotCodes(e.target.value)}
+                              value={nawakotCodes}
+                              sx={{
+                                "& .MuiOutlinedInput-root": {
+                                  "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
+                                },
+                                "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
+                              }}
+                            />
+                          </Grid>
+                          <Grid item xs={6} sm={4}>
+                            <TextField
+                              label="icode ยาหอมอินทจักร์"
+                              variant="standard"
+                              fullWidth
+                              onChange={(e) => setIntjakCodes(e.target.value)}
+                              value={intjakCodes}
+                              sx={{
+                                "& .MuiOutlinedInput-root": {
+                                  "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
+                                },
+                                "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
+                              }}
+                            />
+                          </Grid>
+                        </Grid>
+                      </CardContent>
+                    </Card>
+                    <Card sx={{ mb: 3 }}>
+                      <CardContent>
+                        <p className="text-[#02b1a7] text-base mb-2">
+                          กลุ่มอาการชาจากอัมพฤกษ์-อัมพาต
+                        </p>
+                        <Grid container spacing={2} className="mb-4">
+                          <Grid item xs={16} sm={16}>
+                            <TextField
+                              label="icd10 ตามกลุ่มอาการ"
+                              variant="standard"
+                              fullWidth
+                              onChange={(e) => setIcd10List06(e.target.value)}
+                              value={icd10List06}
+                              sx={{
+                                "& .MuiOutlinedInput-root": {
+                                  "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
+                                },
+                                "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
+                              }}
+                            />
+                          </Grid>
+                          <Grid item xs={6} sm={4}>
+                            <TextField
+                              label="icode ตำรับยาแก้ลมแก้เส้น"
+                              variant="standard"
+                              fullWidth
+                              onChange={(e) => setLomCodes(e.target.value)}
+                              value={lomCodes}
+                              sx={{
+                                "& .MuiOutlinedInput-root": {
+                                  "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
+                                },
+                                "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
+                              }}
+                            />
+                          </Grid>
+                          <Grid item xs={6} sm={4}>
+                            <TextField
+                              label="icode ยาทำลายพระสุเมรุ"
+                              variant="standard"
+                              fullWidth
+                              onChange={(e) => setTamlaiCodes(e.target.value)}
+                              value={tamlaiCodes}
+                              sx={{
+                                "& .MuiOutlinedInput-root": {
+                                  "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
+                                },
+                                "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
+                              }}
+                            />
+                          </Grid>
+                        </Grid>
+                      </CardContent>
+                    </Card>
+                    <Card sx={{ mb: 3 }}>
+                      <CardContent>
+                        <p className="text-[#02b1a7] text-base mb-2">
+                          กลุ่มอาการทางผิวหนังและแผล_1
+                        </p>
+                        <Grid container spacing={2} className="mb-4">
+                          <Grid item xs={16} sm={16}>
+                            <TextField
+                              label="icd10 ตามกลุ่มอาการ_พยายอ"
+                              variant="standard"
+                              fullWidth
+                              onChange={(e) => setIcd10List071(e.target.value)}
+                              value={icd10List071}
+                              sx={{
+                                "& .MuiOutlinedInput-root": {
+                                  "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
+                                },
+                                "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
+                              }}
+                            />
+                          </Grid>
+                          <Grid item xs={6} sm={4}>
+                            <TextField
+                              label="icode พยายอ"
+                              variant="standard"
+                              fullWidth
+                              onChange={(e) => setPayayoCodes(e.target.value)}
+                              value={payayoCodes}
+                              sx={{
+                                "& .MuiOutlinedInput-root": {
+                                  "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
+                                },
+                                "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
+                              }}
+                            />
+                          </Grid>
+                        </Grid>
+                        <p className="text-[#02b1a7] text-base mb-2">
+                          กลุ่มอาการทางผิวหนังและแผล_2
+                        </p>
+                        <Grid container spacing={2} className="mb-4">
+                          <Grid item xs={16} sm={16}>
+                            <TextField
+                              label="icd10 ตามกลุ่มอาการ_ว่านหางจระเข้"
+                              variant="standard"
+                              fullWidth
+                              onChange={(e) => setIcd10List072(e.target.value)}
+                              value={icd10List072}
+                              sx={{
+                                "& .MuiOutlinedInput-root": {
+                                  "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
+                                },
+                                "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
+                              }}
+                            />
+                          </Grid>
+                          <Grid item xs={6} sm={4}>
+                            <TextField
+                              label="icode ว่านหางจระเข้"
+                              variant="standard"
+                              fullWidth
+                              onChange={(e) => setAloCodes(e.target.value)}
+                              value={aloCodes}
+                              sx={{
+                                "& .MuiOutlinedInput-root": {
+                                  "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
+                                },
+                                "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
+                              }}
+                            />
+                          </Grid>
+                        </Grid>
+                        <p className="text-[#02b1a7] text-base mb-2">
+                          กลุ่มอาการทางผิวหนังและแผล_3
+                        </p>
+                        <Grid container spacing={2} className="mb-4">
+                          <Grid item xs={16} sm={16}>
+                            <TextField
+                              label="icd10 ตามกลุ่มอาการ_ยาเปลือกมังคุด"
+                              variant="standard"
+                              fullWidth
+                              onChange={(e) => setIcd10List073(e.target.value)}
+                              value={icd10List073}
+                              sx={{
+                                "& .MuiOutlinedInput-root": {
+                                  "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
+                                },
+                                "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
+                              }}
+                            />
+                          </Grid>
+                          <Grid item xs={6} sm={4}>
+                            <TextField
+                              label="icode ยาเปลือกมังคุด"
+                              variant="standard"
+                              fullWidth
+                              onChange={(e) => setMangosteenCodes(e.target.value)}
+                              value={mangosteenCodes}
+                              sx={{
+                                "& .MuiOutlinedInput-root": {
+                                  "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
+                                },
+                                "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
+                              }}
+                            />
+                          </Grid>
+                        </Grid>
+                        <p className="text-[#02b1a7] text-base mb-2">
+                          กลุ่มอาการทางผิวหนังและแผล_4
+                        </p>
+                        <Grid container spacing={2} className="mb-4">
+                          <Grid item xs={16} sm={16}>
+                            <TextField
+                              label="icd10 ตามกลุ่มอาการ_ยาทิงเจอร์ทองพันชั่ง"
+                              variant="standard"
+                              fullWidth
+                              onChange={(e) => setIcd10List074(e.target.value)}
+                              value={icd10List074}
+                              sx={{
+                                "& .MuiOutlinedInput-root": {
+                                  "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
+                                },
+                                "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
+                              }}
+                            />
+                          </Grid>
+                          <Grid item xs={6} sm={4}>
+                            <TextField
+                              label="icode ยาทิงเจอร์ทองพันชั่ง"
+                              variant="standard"
+                              fullWidth
+                              onChange={(e) => setThongCodes(e.target.value)}
+                              value={thongCodes}
+                              sx={{
+                                "& .MuiOutlinedInput-root": {
+                                  "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
+                                },
+                                "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
+                              }}
+                            />
+                          </Grid>
+                        </Grid>
+                      </CardContent>
+                    </Card>
+                    <Card sx={{ mb: 3 }}>
+                      <CardContent>
+                        <p className="text-[#02b1a7] text-base mb-2">
+                          อาการนอนไม่หลับ
+                        </p>
+                        <Grid container spacing={2} className="mb-4">
+                          <Grid item xs={16} sm={16}>
+                            <TextField
+                              label="icd10 ตามกลุ่มอาการ"
+                              variant="standard"
+                              fullWidth
+                              onChange={(e) => setIcd10List08(e.target.value)}
+                              value={icd10List08}
+                              sx={{
+                                "& .MuiOutlinedInput-root": {
+                                  "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
+                                },
+                                "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
+                              }}
+                            />
+                          </Grid>
+                          <Grid item xs={6} sm={4}>
+                            <TextField
+                              label="icode ยาศุขไสยาศน์"
+                              variant="standard"
+                              fullWidth
+                              onChange={(e) => setSuksaiCodes(e.target.value)}
+                              value={suksaiCodes}
+                              sx={{
+                                "& .MuiOutlinedInput-root": {
+                                  "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
+                                },
+                                "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
+                              }}
+                            />
+                          </Grid>
+                          <Grid item xs={6} sm={4}>
+                            <TextField
+                              label="icode ยาหอมเทพจิตร"
+                              variant="standard"
+                              fullWidth
+                              onChange={(e) => setJitCodes(e.target.value)}
+                              value={jitCodes}
+                              sx={{
+                                "& .MuiOutlinedInput-root": {
+                                  "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
+                                },
+                                "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
+                              }}
+                            />
+                          </Grid>
+                          <Grid item xs={6} sm={4}>
+                            <TextField
+                              label="icode น้ำมันกัญชา THC 20 mg/ml"
+                              variant="standard"
+                              fullWidth
+                              onChange={(e) => setThcCodes(e.target.value)}
+                              value={thcCodes}
+                              sx={{
+                                "& .MuiOutlinedInput-root": {
+                                  "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
+                                },
+                                "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
+                              }}
+                            />
+                          </Grid>
+                        </Grid>
+                      </CardContent>
+                    </Card>
+                    <Card sx={{ mb: 3 }}>
+                      <CardContent>
+                        <p className="text-[#02b1a7] text-base mb-2">
+                          กลุ่มอาการท้องเสีย
+                        </p>
+                        <Grid container spacing={2} className="mb-4">
+                          <Grid item xs={16} sm={16}>
+                            <TextField
+                              label="icd10 ตามกลุ่มอาการ"
+                              variant="standard"
+                              fullWidth
+                              onChange={(e) => setIcd10List09(e.target.value)}
+                              value={icd10List09}
+                              sx={{
+                                "& .MuiOutlinedInput-root": {
+                                  "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
+                                },
+                                "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
+                              }}
+                            />
+                          </Grid>
+                          <Grid item xs={6} sm={4}>
+                            <TextField
+                              label="icode ฟ้าทะลายโจร"
+                              variant="standard"
+                              fullWidth
+                              onChange={(e) => setFahCodes(e.target.value)}
+                              value={fahCodes}
+                              sx={{
+                                "& .MuiOutlinedInput-root": {
+                                  "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
+                                },
+                                "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
+                              }}
+                            />
+                          </Grid>
+                          <Grid item xs={6} sm={4}>
+                            <TextField
+                              label="icode ยากล้วย"
+                              variant="standard"
+                              fullWidth
+                              onChange={(e) => setBananaCodes(e.target.value)}
+                              value={bananaCodes}
+                              sx={{
+                                "& .MuiOutlinedInput-root": {
+                                  "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
+                                },
+                                "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
+                              }}
+                            />
+                          </Grid>
+                          <Grid item xs={6} sm={4}>
+                            <TextField
+                              label="icode ยาเหลืองปิดสมุทร"
+                              variant="standard"
+                              fullWidth
+                              onChange={(e) => setYellowCodes(e.target.value)}
+                              value={yellowCodes}
+                              sx={{
+                                "& .MuiOutlinedInput-root": {
+                                  "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
+                                },
+                                "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
+                              }}
+                            />
+                          </Grid>
+                        </Grid>
+                      </CardContent>
+                    </Card>
+                    <Card sx={{ mb: 3 }}>
+                      <CardContent>
+                        <p className="text-[#02b1a7] text-base mb-2">
+                          กลุ่มอาการเบื่ออาหาร
+                        </p>
+                        <Grid container spacing={2} className="mb-4">
+                          <Grid item xs={16} sm={16}>
+                            <TextField
+                              label="icd10 ตามกลุ่มอาการ"
+                              variant="standard"
+                              fullWidth
+                              onChange={(e) => setIcd10List10(e.target.value)}
+                              value={icd10List10}
+                              sx={{
+                                "& .MuiOutlinedInput-root": {
+                                  "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
+                                },
+                                "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
+                              }}
+                            />
+                          </Grid>
+                          <Grid item xs={6} sm={4}>
+                            <TextField
+                              label="icode ยามะระขี้นก"
+                              variant="standard"
+                              fullWidth
+                              onChange={(e) => setMaraCodes(e.target.value)}
+                              value={maraCodes}
+                              sx={{
+                                "& .MuiOutlinedInput-root": {
+                                  "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
+                                },
+                                "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
+                              }}
+                            />
+                          </Grid>
+                          <Grid item xs={6} sm={4}>
+                            <TextField
+                              label="icode น้ำมันกัญชา THC 20 mg/ml"
+                              variant="standard"
+                              fullWidth
+                              onChange={(e) => setThcCodes(e.target.value)}
+                              value={thcCodes}
+                              sx={{
+                                "& .MuiOutlinedInput-root": {
+                                  "&.Mui-focused fieldset": { borderColor: "#02b1a7" },
+                                },
+                                "& .MuiInputLabel-root.Mui-focused": { color: "#02b1a7" },
+                              }}
+                            />
+                          </Grid>
+                        </Grid>
+                      </CardContent>
+                    </Card>
                     <div className="flex justify-center gap-2">
                       <Button onClick={updateData} color="primary" variant="contained">
                         บันทึก
@@ -1476,48 +1521,149 @@ export default function Thaipadi() {
                           <td className="text-center h-6 sm:h-10 border border-slate-400">
                             {hosXPService?.ttm_drug_sum_price?.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) || ""}
                           </td>
-                          <td className="text-center h-6 sm:h-10 border border-slate-400">{(hosXPService.ttm_n_uc - hosXPService.ttm_np_uc).toLocaleString()}</td>
-                          <td className="text-right pr-4 h-6 sm:h-10 border border-slate-400">{(((hosXPService.ttm_n_uc - hosXPService.ttm_np_uc) * 200).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }))}</td>
-                          <td className="text-center h-6 sm:h-10 border border-slate-400">{(hosXPService.ttm_n_a2 - hosXPService.ttm_np_a2).toLocaleString()}</td>
-                          <td className="text-right pr-4 h-6 sm:h-10 border border-slate-400">{(((hosXPService.ttm_n_a2 - hosXPService.ttm_np_a2) * 200).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }))}</td>
-                          <td className="text-center h-6 sm:h-10 border border-slate-400">{(hosXPService.ttm_n_a7 - hosXPService.ttm_np_a7).toLocaleString()}</td>
-                          <td className="text-right pr-4 h-6 sm:h-10 border border-slate-400">{(((hosXPService.ttm_n_a7 - hosXPService.ttm_np_a7) * 200).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }))}</td>
-                          <td className="text-center h-6 sm:h-10 border border-slate-400">{(hosXPService.ttm_n_other - hosXPService.ttm_np_other).toLocaleString()}</td>
-                          <td className="text-right pr-4 h-6 sm:h-10 border border-slate-400">{(((hosXPService.ttm_n_other - hosXPService.ttm_np_other) * 200).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }))}</td>
-                          <td className="text-center h-6 sm:h-10 border border-slate-400">{(hosXPService.ttm_p_uc - hosXPService.ttm_np_uc).toLocaleString()}</td>
-                          <td className="text-right pr-4 h-6 sm:h-10 border border-slate-400">{(((hosXPService.ttm_p_uc - hosXPService.ttm_np_uc) * 150).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }))}</td>
-                          <td className="text-center h-6 sm:h-10 border border-slate-400">{(hosXPService.ttm_p_a2 - hosXPService.ttm_np_a2).toLocaleString()}</td>
-                          <td className="text-right pr-4 h-6 sm:h-10 border border-slate-400">{(((hosXPService.ttm_p_a2 - hosXPService.ttm_np_a2) * 150).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }))}</td>
-                          <td className="text-center h-6 sm:h-10 border border-slate-400">{(hosXPService.ttm_p_a7 - hosXPService.ttm_np_a7).toLocaleString()}</td>
-                          <td className="text-right pr-4 h-6 sm:h-10 border border-slate-400">{(((hosXPService.ttm_p_a7 - hosXPService.ttm_np_a7) * 150).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }))}</td>
-                          <td className="text-center h-6 sm:h-10 border border-slate-400">{(hosXPService.ttm_p_other - hosXPService.ttm_np_other).toLocaleString()}</td>
-                          <td className="text-right pr-4 h-6 sm:h-10 border border-slate-400">{(((hosXPService.ttm_p_other - hosXPService.ttm_np_other) * 150).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }))}</td>
-                          <td className="text-center h-6 sm:h-10 border border-slate-400">{hosXPService?.ttm_np_uc?.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) || ""}</td>
-                          <td className="text-right pr-4 h-6 sm:h-10 border border-slate-400">{((hosXPService.ttm_np_uc * 250).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }))}</td>
-                          <td className="text-center h-6 sm:h-10 border border-slate-400">{hosXPService?.ttm_np_a2?.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) || ""}</td>
-                          <td className="text-right pr-4 h-6 sm:h-10 border border-slate-400">{((hosXPService.ttm_np_a2 * 250).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }))}</td>
-                          <td className="text-center h-6 sm:h-10 border border-slate-400">{hosXPService?.ttm_np_a7?.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) || ""}</td>
-                          <td className="text-right pr-4 h-6 sm:h-10 border border-slate-400">{((hosXPService.ttm_np_a7 * 250).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }))}</td>
-                          <td className="text-center h-6 sm:h-10 border border-slate-400">{hosXPService?.ttm_np_other?.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) || ""}</td>
-                          <td className="text-right pr-4 h-6 sm:h-10 border border-slate-400">{((hosXPService.ttm_np_other * 250).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }))}</td>
-                          <td className="text-center h-6 sm:h-10 border border-slate-400">{hosXPService?.ttm_o_uc?.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) || ""}</td>
-                          <td className="text-right pr-4 h-6 sm:h-10 border border-slate-400">{((hosXPService.ttm_o_uc * 120).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }))}</td>
-                          <td className="text-center h-6 sm:h-10 border border-slate-400">{hosXPService?.ttm_o_a2?.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) || ""}</td>
-                          <td className="text-right pr-4 h-6 sm:h-10 border border-slate-400">{((hosXPService.ttm_o_a2 * 120).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }))}</td>
-                          <td className="text-center h-6 sm:h-10 border border-slate-400">{hosXPService?.ttm_o_a7?.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) || ""}</td>
-                          <td className="text-right pr-4 h-6 sm:h-10 border border-slate-400">{((hosXPService.ttm_o_a7 * 120).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }))}</td>
-                          <td className="text-center h-6 sm:h-10 border border-slate-400">{hosXPService?.ttm_o_other?.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) || ""}</td>
-                          <td className="text-right pr-4 h-6 sm:h-10 border border-slate-400">{((hosXPService.ttm_o_other * 120).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }))}</td>
-                          <td className="text-center h-6 sm:h-10 border border-slate-400">{hosXPService?.ttm_labor_uc?.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) || ""}</td>
-                          <td className="text-right pr-4 h-6 sm:h-10 border border-slate-400">{((hosXPService.ttm_labor_uc * 500).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }))}</td>
-                          <td className="text-center h-6 sm:h-10 border border-slate-400">{hosXPService?.ttm_labor_a2?.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) || ""}</td>
-                          <td className="text-right pr-4 h-6 sm:h-10 border border-slate-400">{((hosXPService.ttm_labor_a2 * 620).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }))}</td>
-                          <td className="text-center h-6 sm:h-10 border border-slate-400">{hosXPService?.ttm_labor_a7?.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) || ""}</td>
-                          <td className="text-right pr-4 h-6 sm:h-10 border border-slate-400">{((hosXPService.ttm_labor_a7 * 620).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }))}</td>
-                          <td className="text-center h-6 sm:h-10 border border-slate-400">{hosXPService?.ttm_labor_other?.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) || ""}</td>
-                          <td className="text-right pr-4 h-6 sm:h-10 border border-slate-400">{((hosXPService.ttm_labor_other * 620).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }))}</td>
-                          <td className="text-right pr-4 h-6 sm:h-10 border border-slate-400">{((hosXPService.ttm_drug_sum_price) + ((hosXPService.ttm_n_uc - hosXPService.ttm_np_uc) * 200) + ((hosXPService.ttm_n_a2 - hosXPService.ttm_np_a2) * 200) + ((hosXPService.ttm_n_a7 - hosXPService.ttm_np_a7) * 200) + ((hosXPService.ttm_n_other - hosXPService.ttm_np_other) * 200) + ((hosXPService.ttm_p_uc - hosXPService.ttm_np_uc) * 150) + ((hosXPService.ttm_p_a2 - hosXPService.ttm_np_a2) * 150) + ((hosXPService.ttm_p_a7 - hosXPService.ttm_np_a7) * 150) + ((hosXPService.ttm_p_other - hosXPService.ttm_np_other) * 150) + (hosXPService.ttm_np_uc * 250) + (hosXPService.ttm_np_a2 * 250) + (hosXPService.ttm_np_a7 * 250) + (hosXPService.ttm_np_other * 250) + (hosXPService.ttm_o_uc * 120) + (hosXPService.ttm_o_a2 * 120) + (hosXPService.ttm_o_a7 * 120) + (hosXPService.ttm_o_other * 120) + (hosXPService.ttm_labor_uc * 500) + (hosXPService.ttm_labor_a2 * 620) + (hosXPService.ttm_labor_a7 * 620) + (hosXPService.ttm_labor_other * 620)).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
-                          <td className="text-right pr-4 h-6 sm:h-10 border border-slate-400">{(((hosXPService.ttm_drug_sum_price) + ((hosXPService.ttm_n_uc - hosXPService.ttm_np_uc) * 200) + ((hosXPService.ttm_n_a2 - hosXPService.ttm_np_a2) * 200) + ((hosXPService.ttm_n_a7 - hosXPService.ttm_np_a7) * 200) + ((hosXPService.ttm_n_other - hosXPService.ttm_np_other) * 200) + ((hosXPService.ttm_p_uc - hosXPService.ttm_np_uc) * 150) + ((hosXPService.ttm_p_a2 - hosXPService.ttm_np_a2) * 150) + ((hosXPService.ttm_p_a7 - hosXPService.ttm_np_a7) * 150) + ((hosXPService.ttm_p_other - hosXPService.ttm_np_other) * 150) + (hosXPService.ttm_np_uc * 250) + (hosXPService.ttm_np_a2 * 250) + (hosXPService.ttm_np_a7 * 250) + (hosXPService.ttm_np_other * 250) + (hosXPService.ttm_o_uc * 120) + (hosXPService.ttm_o_a2 * 120) + (hosXPService.ttm_o_a7 * 120) + (hosXPService.ttm_o_other * 120) + (hosXPService.ttm_o_other * 120) + (hosXPService.ttm_labor_uc * 500) + (hosXPService.ttm_labor_a2 * 620) + (hosXPService.ttm_labor_a7 * 620) + (hosXPService.ttm_labor_other * 620)) / hosXPService.op_visit).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+                          <td className="text-center h-6 sm:h-10 border border-slate-400">{Number.isNaN(hosXPService.ttm_n_uc - hosXPService.ttm_np_uc) ? "" : (hosXPService.ttm_n_uc - hosXPService.ttm_np_uc).toLocaleString()}</td>
+                          <td className="text-right pr-4 h-6 sm:h-10 border border-slate-400">{Number.isNaN(hosXPService.ttm_n_uc - hosXPService.ttm_np_uc) ? "" : (((hosXPService.ttm_n_uc - hosXPService.ttm_np_uc) * 200).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }))}</td>
+                          <td className="text-center h-6 sm:h-10 border border-slate-400">{Number.isNaN(hosXPService.ttm_n_a2 - hosXPService.ttm_np_a2) ? "" : (hosXPService.ttm_n_a2 - hosXPService.ttm_np_a2).toLocaleString()}</td>
+                          <td className="text-right pr-4 h-6 sm:h-10 border border-slate-400">{Number.isNaN(hosXPService.ttm_n_a2 - hosXPService.ttm_np_a2) ? "" : (((hosXPService.ttm_n_a2 - hosXPService.ttm_np_a2) * 200).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }))}</td>
+                          <td className="text-center h-6 sm:h-10 border border-slate-400">{Number.isNaN(hosXPService.ttm_n_a7 - hosXPService.ttm_np_a7) ? "" : (hosXPService.ttm_n_a7 - hosXPService.ttm_np_a7).toLocaleString()}</td>
+                          <td className="text-right pr-4 h-6 sm:h-10 border border-slate-400">{Number.isNaN(hosXPService.ttm_n_a7 - hosXPService.ttm_np_a7) ? "" : (((hosXPService.ttm_n_a7 - hosXPService.ttm_np_a7) * 200).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }))}</td>
+                          <td className="text-center h-6 sm:h-10 border border-slate-400">{Number.isNaN(hosXPService.ttm_n_other - hosXPService.ttm_np_other) ? "" : (hosXPService.ttm_n_other - hosXPService.ttm_np_other).toLocaleString()}</td>
+                          <td className="text-right pr-4 h-6 sm:h-10 border border-slate-400">{Number.isNaN(hosXPService.ttm_n_other - hosXPService.ttm_np_other) ? "" : (((hosXPService.ttm_n_other - hosXPService.ttm_np_other) * 200).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }))}</td>
+                          <td className="text-center h-6 sm:h-10 border border-slate-400">{Number.isNaN(hosXPService.ttm_p_uc - hosXPService.ttm_np_uc) ? "" : (hosXPService.ttm_p_uc - hosXPService.ttm_np_uc).toLocaleString()}</td>
+                          <td className="text-right pr-4 h-6 sm:h-10 border border-slate-400">{Number.isNaN(hosXPService.ttm_p_uc - hosXPService.ttm_np_uc) ? "" : (((hosXPService.ttm_p_uc - hosXPService.ttm_np_uc) * 150).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }))}</td>
+                          <td className="text-center h-6 sm:h-10 border border-slate-400">{Number.isNaN(hosXPService.ttm_p_a2 - hosXPService.ttm_np_a2) ? "" : (hosXPService.ttm_p_a2 - hosXPService.ttm_np_a2).toLocaleString()}</td>
+                          <td className="text-right pr-4 h-6 sm:h-10 border border-slate-400">{Number.isNaN(hosXPService.ttm_p_a2 - hosXPService.ttm_np_a2) ? "" : (((hosXPService.ttm_p_a2 - hosXPService.ttm_np_a2) * 150).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }))}</td>
+                          <td className="text-center h-6 sm:h-10 border border-slate-400">{Number.isNaN(hosXPService.ttm_p_a7 - hosXPService.ttm_np_a7) ? "" : (hosXPService.ttm_p_a7 - hosXPService.ttm_np_a7).toLocaleString()}</td>
+                          <td className="text-right pr-4 h-6 sm:h-10 border border-slate-400">{Number.isNaN(hosXPService.ttm_p_a7 - hosXPService.ttm_np_a7) ? "" : (((hosXPService.ttm_p_a7 - hosXPService.ttm_np_a7) * 150).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }))}</td>
+                          <td className="text-center h-6 sm:h-10 border border-slate-400">{Number.isNaN(hosXPService.ttm_p_other - hosXPService.ttm_np_other) ? "" : (hosXPService.ttm_p_other - hosXPService.ttm_np_other).toLocaleString()}</td>
+                          <td className="text-right pr-4 h-6 sm:h-10 border border-slate-400">{Number.isNaN(hosXPService.ttm_p_other - hosXPService.ttm_np_other) ? "" : (((hosXPService.ttm_p_other - hosXPService.ttm_np_other) * 150).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }))}</td>
+                          <td className="text-center h-6 sm:h-10 border border-slate-400">{isNaN(Number(hosXPService?.ttm_np_uc)) ? "" : Number(hosXPService.ttm_np_uc).toLocaleString()}</td>
+                          <td className="text-right pr-4 h-6 sm:h-10 border border-slate-400">{isNaN(Number(hosXPService?.ttm_np_uc)) ? "" : ((hosXPService.ttm_np_uc * 250).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }))}</td>
+                          <td className="text-center h-6 sm:h-10 border border-slate-400">{isNaN(Number(hosXPService?.ttm_np_a2)) ? "" : Number(hosXPService.ttm_np_a2).toLocaleString()}</td>
+                          <td className="text-right pr-4 h-6 sm:h-10 border border-slate-400">{isNaN(Number(hosXPService?.ttm_np_a2)) ? "" : ((hosXPService.ttm_np_a2 * 250).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }))}</td>
+                          <td className="text-center h-6 sm:h-10 border border-slate-400">{isNaN(Number(hosXPService?.ttm_np_a7)) ? "" : Number(hosXPService.ttm_np_a7).toLocaleString()}</td>
+                          <td className="text-right pr-4 h-6 sm:h-10 border border-slate-400">{isNaN(Number(hosXPService?.ttm_np_a7)) ? "" : ((hosXPService.ttm_np_a7 * 250).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }))}</td>
+                          <td className="text-center h-6 sm:h-10 border border-slate-400">{isNaN(Number(hosXPService?.ttm_np_other)) ? "" : Number(hosXPService.ttm_np_other).toLocaleString()}</td>
+                          <td className="text-right pr-4 h-6 sm:h-10 border border-slate-400">{isNaN(Number(hosXPService?.ttm_np_other)) ? "" : ((hosXPService.ttm_np_other * 250).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }))}</td>
+                          <td className="text-center h-6 sm:h-10 border border-slate-400">{isNaN(Number(hosXPService?.ttm_o_uc)) ? "" : Number(hosXPService.ttm_o_uc).toLocaleString()}</td>
+                          <td className="text-right pr-4 h-6 sm:h-10 border border-slate-400">{isNaN(Number(hosXPService?.ttm_o_uc)) ? "" : ((hosXPService.ttm_o_uc * 120).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }))}</td>
+                          <td className="text-center h-6 sm:h-10 border border-slate-400">{isNaN(Number(hosXPService?.ttm_o_a2)) ? "" : Number(hosXPService.ttm_o_a2).toLocaleString()}</td>
+                          <td className="text-right pr-4 h-6 sm:h-10 border border-slate-400">{isNaN(Number(hosXPService?.ttm_o_a2)) ? "" : ((hosXPService.ttm_o_a2 * 120).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }))}</td>
+                          <td className="text-center h-6 sm:h-10 border border-slate-400">{isNaN(Number(hosXPService?.ttm_o_a7)) ? "" : Number(hosXPService.ttm_o_a7).toLocaleString()}</td>
+                          <td className="text-right pr-4 h-6 sm:h-10 border border-slate-400">{isNaN(Number(hosXPService?.ttm_o_a7)) ? "" : ((hosXPService.ttm_o_a7 * 120).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }))}</td>
+                          <td className="text-center h-6 sm:h-10 border border-slate-400">{isNaN(Number(hosXPService?.ttm_o_other)) ? "" : Number(hosXPService.ttm_o_other).toLocaleString()}</td>
+                          <td className="text-right pr-4 h-6 sm:h-10 border border-slate-400">{isNaN(Number(hosXPService?.ttm_o_other)) ? "" : ((hosXPService.ttm_o_other * 120).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }))}</td>
+                          <td className="text-center h-6 sm:h-10 border border-slate-400">{isNaN(Number(hosXPService?.ttm_labor_uc)) ? "" : Number(hosXPService.ttm_labor_uc).toLocaleString()}</td>
+                          <td className="text-right pr-4 h-6 sm:h-10 border border-slate-400">{isNaN(Number(hosXPService?.ttm_labor_uc)) ? "" : ((hosXPService.ttm_labor_uc * 500).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }))}</td>
+                          <td className="text-center h-6 sm:h-10 border border-slate-400">{isNaN(Number(hosXPService?.ttm_labor_a2)) ? "" : Number(hosXPService.ttm_labor_a2).toLocaleString()}</td>
+                          <td className="text-right pr-4 h-6 sm:h-10 border border-slate-400">{isNaN(Number(hosXPService?.ttm_labor_a2)) ? "" : ((hosXPService.ttm_labor_a2 * 620).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }))}</td>
+                          <td className="text-center h-6 sm:h-10 border border-slate-400">{isNaN(Number(hosXPService?.ttm_labor_a7)) ? "" : Number(hosXPService.ttm_labor_a7).toLocaleString()}</td>
+                          <td className="text-right pr-4 h-6 sm:h-10 border border-slate-400">{isNaN(Number(hosXPService?.ttm_labor_a7)) ? "" : ((hosXPService.ttm_labor_a7 * 620).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }))}</td>
+                          <td className="text-center h-6 sm:h-10 border border-slate-400">{isNaN(Number(hosXPService?.ttm_labor_other)) ? "" : Number(hosXPService.ttm_labor_other).toLocaleString()}</td>
+                          <td className="text-right pr-4 h-6 sm:h-10 border border-slate-400">{isNaN(Number(hosXPService?.ttm_labor_other)) ? "" : ((hosXPService.ttm_labor_other * 620).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }))}</td>
+                          <td className="text-right pr-4 h-6 sm:h-10 border border-slate-400">
+                            {isNaN(
+                              Number(hosXPService?.ttm_drug_sum_price) +
+                              ((Number(hosXPService?.ttm_n_uc) - Number(hosXPService?.ttm_np_uc)) * 200) +
+                              ((Number(hosXPService?.ttm_n_a2) - Number(hosXPService?.ttm_np_a2)) * 200) +
+                              ((Number(hosXPService?.ttm_n_a7) - Number(hosXPService?.ttm_np_a7)) * 200) +
+                              ((Number(hosXPService?.ttm_n_other) - Number(hosXPService?.ttm_np_other)) * 200) +
+                              ((Number(hosXPService?.ttm_p_uc) - Number(hosXPService?.ttm_np_uc)) * 150) +
+                              ((Number(hosXPService?.ttm_p_a2) - Number(hosXPService?.ttm_np_a2)) * 150) +
+                              ((Number(hosXPService?.ttm_p_a7) - Number(hosXPService?.ttm_np_a7)) * 150) +
+                              ((Number(hosXPService?.ttm_p_other) - Number(hosXPService?.ttm_np_other)) * 150) +
+                              (Number(hosXPService?.ttm_np_uc) * 250) +
+                              (Number(hosXPService?.ttm_np_a2) * 250) +
+                              (Number(hosXPService?.ttm_np_a7) * 250) +
+                              (Number(hosXPService?.ttm_np_other) * 250) +
+                              (Number(hosXPService?.ttm_o_uc) * 120) +
+                              (Number(hosXPService?.ttm_o_a2) * 120) +
+                              (Number(hosXPService?.ttm_o_a7) * 120) +
+                              (Number(hosXPService?.ttm_o_other) * 120) +
+                              (Number(hosXPService?.ttm_labor_uc) * 500) +
+                              (Number(hosXPService?.ttm_labor_a2) * 620) +
+                              (Number(hosXPService?.ttm_labor_a7) * 620) +
+                              (Number(hosXPService?.ttm_labor_other) * 620)
+                            ) ? "" : (
+                              (
+                                Number(hosXPService?.ttm_drug_sum_price) +
+                                ((Number(hosXPService?.ttm_n_uc) - Number(hosXPService?.ttm_np_uc)) * 200) +
+                                ((Number(hosXPService?.ttm_n_a2) - Number(hosXPService?.ttm_np_a2)) * 200) +
+                                ((Number(hosXPService?.ttm_n_a7) - Number(hosXPService?.ttm_np_a7)) * 200) +
+                                ((Number(hosXPService?.ttm_n_other) - Number(hosXPService?.ttm_np_other)) * 200) +
+                                ((Number(hosXPService?.ttm_p_uc) - Number(hosXPService?.ttm_np_uc)) * 150) +
+                                ((Number(hosXPService?.ttm_p_a2) - Number(hosXPService?.ttm_np_a2)) * 150) +
+                                ((Number(hosXPService?.ttm_p_a7) - Number(hosXPService?.ttm_np_a7)) * 150) +
+                                ((Number(hosXPService?.ttm_p_other) - Number(hosXPService?.ttm_np_other)) * 150) +
+                                (Number(hosXPService?.ttm_np_uc) * 250) +
+                                (Number(hosXPService?.ttm_np_a2) * 250) +
+                                (Number(hosXPService?.ttm_np_a7) * 250) +
+                                (Number(hosXPService?.ttm_np_other) * 250) +
+                                (Number(hosXPService?.ttm_o_uc) * 120) +
+                                (Number(hosXPService?.ttm_o_a2) * 120) +
+                                (Number(hosXPService?.ttm_o_a7) * 120) +
+                                (Number(hosXPService?.ttm_o_other) * 120) +
+                                (Number(hosXPService?.ttm_labor_uc) * 500) +
+                                (Number(hosXPService?.ttm_labor_a2) * 620) +
+                                (Number(hosXPService?.ttm_labor_a7) * 620) +
+                                (Number(hosXPService?.ttm_labor_other) * 620)
+                              ).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+                            )}
+                          </td>
+                          <td className="text-right pr-4 h-6 sm:h-10 border border-slate-400">
+                            {Number(hosXPService?.op_visit) === 0
+                              ? 0
+                              : isNaN(
+                                (Number(hosXPService?.ttm_drug_sum_price) +
+                                  ((Number(hosXPService?.ttm_n_uc) - Number(hosXPService?.ttm_np_uc)) * 200) +
+                                  ((Number(hosXPService?.ttm_n_a2) - Number(hosXPService?.ttm_np_a2)) * 200) +
+                                  ((Number(hosXPService?.ttm_n_a7) - Number(hosXPService?.ttm_np_a7)) * 200) +
+                                  ((Number(hosXPService?.ttm_n_other) - Number(hosXPService?.ttm_np_other)) * 200) +
+                                  ((Number(hosXPService?.ttm_p_uc) - Number(hosXPService?.ttm_np_uc)) * 150) +
+                                  ((Number(hosXPService?.ttm_p_a2) - Number(hosXPService?.ttm_np_a2)) * 150) +
+                                  ((Number(hosXPService?.ttm_p_a7) - Number(hosXPService?.ttm_np_a7)) * 150) +
+                                  ((Number(hosXPService?.ttm_p_other) - Number(hosXPService?.ttm_np_other)) * 150) +
+                                  (Number(hosXPService?.ttm_np_uc) * 250) +
+                                  (Number(hosXPService?.ttm_np_a2) * 250) +
+                                  (Number(hosXPService?.ttm_np_a7) * 250) +
+                                  (Number(hosXPService?.ttm_np_other) * 250) +
+                                  (Number(hosXPService?.ttm_o_uc) * 120) +
+                                  (Number(hosXPService?.ttm_o_a2) * 120) +
+                                  (Number(hosXPService?.ttm_o_a7) * 120) +
+                                  (Number(hosXPService?.ttm_o_other) * 120) +
+                                  (Number(hosXPService?.ttm_labor_uc) * 500) +
+                                  (Number(hosXPService?.ttm_labor_a2) * 620) +
+                                  (Number(hosXPService?.ttm_labor_a7) * 620) +
+                                  (Number(hosXPService?.ttm_labor_other) * 620)) / Number(hosXPService?.op_visit)
+                              )
+                                ? ""
+                                : (
+                                  (
+                                    (Number(hosXPService?.ttm_drug_sum_price) +
+                                      ((Number(hosXPService?.ttm_n_uc) - Number(hosXPService?.ttm_np_uc)) * 200) +
+                                      ((Number(hosXPService?.ttm_n_a2) - Number(hosXPService?.ttm_np_a2)) * 200) +
+                                      ((Number(hosXPService?.ttm_n_a7) - Number(hosXPService?.ttm_np_a7)) * 200) +
+                                      ((Number(hosXPService?.ttm_n_other) - Number(hosXPService?.ttm_np_other)) * 200) +
+                                      ((Number(hosXPService?.ttm_p_uc) - Number(hosXPService?.ttm_np_uc)) * 150) +
+                                      ((Number(hosXPService?.ttm_p_a2) - Number(hosXPService?.ttm_np_a2)) * 150) +
+                                      ((Number(hosXPService?.ttm_p_a7) - Number(hosXPService?.ttm_np_a7)) * 150) +
+                                      ((Number(hosXPService?.ttm_p_other) - Number(hosXPService?.ttm_np_other)) * 150) +
+                                      (Number(hosXPService?.ttm_np_uc) * 250) +
+                                      (Number(hosXPService?.ttm_np_a2) * 250) +
+                                      (Number(hosXPService?.ttm_np_a7) * 250) +
+                                      (Number(hosXPService?.ttm_np_other) * 250) +
+                                      (Number(hosXPService?.ttm_o_uc) * 120) +
+                                      (Number(hosXPService?.ttm_o_a2) * 120) +
+                                      (Number(hosXPService?.ttm_o_a7) * 120) +
+                                      (Number(hosXPService?.ttm_o_other) * 120) +
+                                      (Number(hosXPService?.ttm_labor_uc) * 500) +
+                                      (Number(hosXPService?.ttm_labor_a2) * 620) +
+                                      (Number(hosXPService?.ttm_labor_a7) * 620) +
+                                      (Number(hosXPService?.ttm_labor_other) * 620)) / Number(hosXPService?.op_visit)
+                                  ).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+                                )
+                            }
+                          </td>
                         </tr>
                       </tbody>
                     </table>
@@ -2327,8 +2473,8 @@ export default function Thaipadi() {
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
+            </div >
+          </div >
         )
       }
     </>
