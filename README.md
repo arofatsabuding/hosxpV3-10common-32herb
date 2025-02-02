@@ -32,7 +32,10 @@ npm run build
 
 ### 5️⃣ รันโปรแกรมด้วย PM2
 ```sh
-set PORT=3001 pm2 start npm --name "THAIMED-KPI" -- start
+npm install -g pm2
+```
+```sh
+pm2 start ecosystem.config.js
 ```
 📌 **หมายเหตุ:** เปลี่ยน `3001` เป็น PORT ตามที่ต้องการ
 
