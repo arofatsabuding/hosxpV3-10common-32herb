@@ -10,6 +10,7 @@ import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";
 import { Dialog, Button, IconButton, TextField, Grid } from "@mui/material";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
+import Swal from "sweetalert2";
 
 registerLocale("th", th);
 
@@ -25,7 +26,6 @@ const Loading = () => {
     </div>
   );
 };
-
 
 export default function Thaipadi() {
 
@@ -134,6 +134,20 @@ export default function Thaipadi() {
   };
 
   const fetchHosXPData = async () => {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 60000); // ⏳ Timeout 10 วินาที
+
+    Swal.fire({
+      title: "กำลังโหลดข้อมูล...",
+      text: "โปรดรอสักครู่",
+      icon: "info",
+      allowOutsideClick: false,
+      showConfirmButton: false, // ไม่แสดงปุ่ม OK
+      didOpen: () => {
+        Swal.showLoading(); // แสดงไอคอนโหลด
+      }
+    });
+
     const date = { startDate, endDate };
     const serviceData = {
       startDate,
@@ -149,36 +163,53 @@ export default function Thaipadi() {
       pcodeUC: pcodeUC,
       pcodeA7: pcodeA7
     }
-
     try {
       const [ServiceData, Drug01, Drug02, Drug03, Drug041, Drug042, Drug05, Drug06, Drug071, Drug072, Drug073, Drug074, Drug08, Drug09, Drug10] = await Promise.all([
-        axios.post(`/api/kpi-service`, serviceData, { headers: { "Content-Type": "application/json" } }),
-        axios.post(`/api/kpi-drug01`, date, { headers: { "Content-Type": "application/json" } }),
-        axios.post(`/api/kpi-drug02`, date, { headers: { "Content-Type": "application/json" } }),
-        axios.post(`/api/kpi-drug03`, date, { headers: { "Content-Type": "application/json" } }),
-        axios.post(`/api/kpi-drug041`, date, { headers: { "Content-Type": "application/json" } }),
-        axios.post(`/api/kpi-drug042`, date, { headers: { "Content-Type": "application/json" } }),
-        axios.post(`/api/kpi-drug05`, date, { headers: { "Content-Type": "application/json" } }),
-        axios.post(`/api/kpi-drug06`, date, { headers: { "Content-Type": "application/json" } }),
-        axios.post(`/api/kpi-drug071`, date, { headers: { "Content-Type": "application/json" } }),
-        axios.post(`/api/kpi-drug072`, date, { headers: { "Content-Type": "application/json" } }),
-        axios.post(`/api/kpi-drug073`, date, { headers: { "Content-Type": "application/json" } }),
-        axios.post(`/api/kpi-drug074`, date, { headers: { "Content-Type": "application/json" } }),
-        axios.post(`/api/kpi-drug08`, date, { headers: { "Content-Type": "application/json" } }),
-        axios.post(`/api/kpi-drug09`, date, { headers: { "Content-Type": "application/json" } }),
-        axios.post(`/api/kpi-drug10`, date, { headers: { "Content-Type": "application/json" } })
+        axios.post(`/api/kpi-service`, serviceData, { headers: { "Content-Type": "application/json" }, signal: controller.signal }),
+        axios.post(`/api/kpi-drug01`, date, { headers: { "Content-Type": "application/json" }, signal: controller.signal }),
+        axios.post(`/api/kpi-drug02`, date, { headers: { "Content-Type": "application/json" }, signal: controller.signal }),
+        axios.post(`/api/kpi-drug03`, date, { headers: { "Content-Type": "application/json" }, signal: controller.signal }),
+        axios.post(`/api/kpi-drug041`, date, { headers: { "Content-Type": "application/json" }, signal: controller.signal }),
+        axios.post(`/api/kpi-drug042`, date, { headers: { "Content-Type": "application/json" }, signal: controller.signal }),
+        axios.post(`/api/kpi-drug05`, date, { headers: { "Content-Type": "application/json" }, signal: controller.signal }),
+        axios.post(`/api/kpi-drug06`, date, { headers: { "Content-Type": "application/json" }, signal: controller.signal }),
+        axios.post(`/api/kpi-drug071`, date, { headers: { "Content-Type": "application/json" }, signal: controller.signal }),
+        axios.post(`/api/kpi-drug072`, date, { headers: { "Content-Type": "application/json" }, signal: controller.signal }),
+        axios.post(`/api/kpi-drug073`, date, { headers: { "Content-Type": "application/json" }, signal: controller.signal }),
+        axios.post(`/api/kpi-drug074`, date, { headers: { "Content-Type": "application/json" }, signal: controller.signal }),
+        axios.post(`/api/kpi-drug08`, date, { headers: { "Content-Type": "application/json" }, signal: controller.signal }),
+        axios.post(`/api/kpi-drug09`, date, { headers: { "Content-Type": "application/json" }, signal: controller.signal }),
+        axios.post(`/api/kpi-drug10`, date, { headers: { "Content-Type": "application/json" }, signal: controller.signal })
       ]);
+      clearTimeout(timeout)
       setHosXPService(ServiceData.data); // แสดงข้อมูลที่กรองและปรับปรุงแล้ว
       const combinedDrugs = { ...Drug01.data, ...Drug02.data, ...Drug03.data, ...Drug041.data, ...Drug042.data, ...Drug05.data, ...Drug06.data, ...Drug071.data, ...Drug072.data, ...Drug073.data, ...Drug074.data, ...Drug08.data, ...Drug09.data, ...Drug10.data };
       setHosXPDrug(combinedDrugs)
+      Swal.close();
     } catch (error) {
       console.error("Error fetching data:", error);
-    } finally {
-      setIsLoading(false); // ✅ ปิด Loading เมื่อโหลดเสร็จ
+      clearTimeout(timeout);
+      Swal.close();
+      if (axios.isCancel(error)) {
+        Swal.fire({
+          title: "โหลดข้อมูลไม่สำเร็จ!",
+          text: "ใช้เวลาโหลดข้อมูลนานเกินไป กรุณาตรวจสอบการเชื่อมต่อและลองใหม่อีกครั้ง",
+          icon: "error",
+          confirmButtonText: "ตกลง"
+        });
+      } else {
+        Swal.fire({
+          title: "เกิดข้อผิดพลาด!",
+          text: "ไม่สามารถโหลดข้อมูลได้",
+          icon: "error",
+          confirmButtonText: "ตกลง"
+        });
+      }
     }
   };
 
   const fetchSettingData = async () => {
+    setIsLoading(true)
     try {
       const [data] = await Promise.all([
         axios.get(`/api/data`)
@@ -346,9 +377,11 @@ export default function Thaipadi() {
             <div className="flex bg-[#ebf7f7]">
               <div className="sub-content">
                 <div className="bg-white rounded-lg py-4 mt-4 mb-2 flex justify-center items-center relative px-4">
-                  <p className="text-[0.5rem] sm:text-xl font-normal text-[#02b1a7]">
-                    รายงานตัวชี้วัดกลุ่มงานการแพทย์แผนไทยและแพทย์ทางเลือก
-                  </p>
+                  <div>
+                    <p className="text-[0.5rem] sm:text-xl font-normal text-[#02b1a7]">
+                      รายงานตัวชี้วัดกลุ่มงานการแพทย์แผนไทยและแพทย์ทางเลือก
+                    </p>
+                  </div>
                   <IconButton
                     className="absolute right-4 text-gray-600 hover:text-gray-900"
                     onClick={() => setOpen(true)}
@@ -1388,44 +1421,44 @@ export default function Thaipadi() {
                     <table aria-label="data table" id="table12" className="table-fixed border-collapse text-[0.5rem]  sm:text-sm border border-slate-500">
                       <thead>
                         <tr>
-                          <td rowSpan="3" className="text-center bg-[#95ece8] border border-slate-600 min-w-[80px] sm:min-w-[150px]">จำนวนบริการผู้ป่วยนอกทั้งหมด</td>
-                          <td rowSpan="3" className="text-center bg-[#95ece8] border border-slate-600 min-w-[80px] sm:min-w-[150px]">จำนวนบริการแพทย์แผนไทยทั้งหมด</td>
-                          <td rowSpan="3" className="text-center bg-[#95ece8] border border-slate-600 min-w-[80px] sm:min-w-[150px]">มูลค่ายาสมุนไพร</td>
-                          <td colSpan="8" className="text-center bg-[#95ece8] h-6 sm:h-10 border border-slate-600 ">นวด</td>
-                          <td colSpan="8" className="text-center bg-[#95ece8] border border-slate-600 ">ประคบสมุนไพร</td>
-                          <td colSpan="8" className="text-center bg-[#95ece8] border border-slate-600 ">นวดและประคบ</td>
-                          <td colSpan="8" className="text-center bg-[#95ece8] border border-slate-600 ">อบสมุนไพร</td>
-                          <td colSpan="8" className="text-center bg-[#95ece8] border border-slate-600 ">การบริบาลหญิงหลังคลอด</td>
-                          <td rowSpan="3" className="text-center bg-[#95ece8] border border-slate-600 min-w-[80px] sm:min-w-[150px]">รวมทั้งสิ้น</td>
-                          <td rowSpan="3" className="text-center bg-[#95ece8] border border-slate-600 min-w-[80px] sm:min-w-[150px]">รายรับต่อครั้ง</td>
+                          <td rowSpan="3" className="text-center bg-[#41dfd7] border border-slate-600 min-w-[80px] sm:min-w-[150px]">จำนวนบริการผู้ป่วยนอกทั้งหมด</td>
+                          <td rowSpan="3" className="text-center bg-[#41dfd7] border border-slate-600 min-w-[80px] sm:min-w-[150px]">จำนวนบริการแพทย์แผนไทยทั้งหมด</td>
+                          <td rowSpan="3" className="text-center bg-[#41dfd7] border border-slate-600 min-w-[80px] sm:min-w-[150px]">มูลค่ายาสมุนไพร</td>
+                          <td colSpan="8" className="text-center bg-[#41dfd7] h-6 sm:h-10 border border-slate-600 ">นวด</td>
+                          <td colSpan="8" className="text-center bg-[#41dfd7] border border-slate-600 ">ประคบสมุนไพร</td>
+                          <td colSpan="8" className="text-center bg-[#41dfd7] border border-slate-600 ">นวดและประคบ</td>
+                          <td colSpan="8" className="text-center bg-[#41dfd7] border border-slate-600 ">อบสมุนไพร</td>
+                          <td colSpan="8" className="text-center bg-[#41dfd7] border border-slate-600 ">การบริบาลหญิงหลังคลอด</td>
+                          <td rowSpan="3" className="text-center bg-[#41dfd7] border border-slate-600 min-w-[80px] sm:min-w-[150px]">รวมทั้งสิ้น</td>
+                          <td rowSpan="3" className="text-center bg-[#41dfd7] border border-slate-600 min-w-[80px] sm:min-w-[150px]">รายรับต่อครั้ง</td>
                         </tr>
                         <tr>
-                          <td colSpan="2" className="text-center bg-[#95ece8] h-6 sm:h-10 border border-slate-600">สิทธิ UC</td>
-                          <td colSpan="2" className="text-center bg-[#95ece8] border border-slate-600">สิทธิจ่ายตรง</td>
-                          <td colSpan="2" className="text-center bg-[#95ece8] h-6 sm:h-10 border border-slate-600">สิทธิประกันสังคม</td>
-                          <td colSpan="2" className="text-center bg-[#95ece8] border border-slate-600">สิทธิอื่น ๆ</td>
-                          <td colSpan="2" className="text-center bg-[#95ece8] h-6 sm:h-10 border border-slate-600">สิทธิ UC</td>
-                          <td colSpan="2" className="text-center bg-[#95ece8] border border-slate-600">สิทธิจ่ายตรง</td>
-                          <td colSpan="2" className="text-center bg-[#95ece8] h-6 sm:h-10 border border-slate-600">สิทธิประกันสังคม</td>
-                          <td colSpan="2" className="text-center bg-[#95ece8] border border-slate-600">สิทธิอื่น ๆ</td>
-                          <td colSpan="2" className="text-center bg-[#95ece8] h-6 sm:h-10 border border-slate-600">สิทธิ UC</td>
-                          <td colSpan="2" className="text-center bg-[#95ece8] border border-slate-600">สิทธิจ่ายตรง</td>
-                          <td colSpan="2" className="text-center bg-[#95ece8] h-6 sm:h-10 border border-slate-600">สิทธิประกันสังคม</td>
-                          <td colSpan="2" className="text-center bg-[#95ece8] border border-slate-600">สิทธิอื่น ๆ</td>
-                          <td colSpan="2" className="text-center bg-[#95ece8] h-6 sm:h-10 border border-slate-600">สิทธิ UC</td>
-                          <td colSpan="2" className="text-center bg-[#95ece8] border border-slate-600">สิทธิจ่ายตรง</td>
-                          <td colSpan="2" className="text-center bg-[#95ece8] h-6 sm:h-10 border border-slate-600">สิทธิประกันสังคม</td>
-                          <td colSpan="2" className="text-center bg-[#95ece8] border border-slate-600">สิทธิอื่น ๆ</td>
-                          <td colSpan="2" className="text-center bg-[#95ece8] h-6 sm:h-10 border border-slate-600">สิทธิ UC</td>
-                          <td colSpan="2" className="text-center bg-[#95ece8] border border-slate-600">สิทธิจ่ายตรง</td>
-                          <td colSpan="2" className="text-center bg-[#95ece8] h-6 sm:h-10 border border-slate-600">สิทธิประกันสังคม</td>
-                          <td colSpan="2" className="text-center bg-[#95ece8] border border-slate-600">สิทธิอื่น ๆ</td>
+                          <td colSpan="2" className="text-center bg-[#41dfd7] h-6 sm:h-10 border border-slate-600">สิทธิ UC</td>
+                          <td colSpan="2" className="text-center bg-[#41dfd7] border border-slate-600">สิทธิจ่ายตรง</td>
+                          <td colSpan="2" className="text-center bg-[#41dfd7] h-6 sm:h-10 border border-slate-600">สิทธิประกันสังคม</td>
+                          <td colSpan="2" className="text-center bg-[#41dfd7] border border-slate-600">สิทธิอื่น ๆ</td>
+                          <td colSpan="2" className="text-center bg-[#41dfd7] h-6 sm:h-10 border border-slate-600">สิทธิ UC</td>
+                          <td colSpan="2" className="text-center bg-[#41dfd7] border border-slate-600">สิทธิจ่ายตรง</td>
+                          <td colSpan="2" className="text-center bg-[#41dfd7] h-6 sm:h-10 border border-slate-600">สิทธิประกันสังคม</td>
+                          <td colSpan="2" className="text-center bg-[#41dfd7] border border-slate-600">สิทธิอื่น ๆ</td>
+                          <td colSpan="2" className="text-center bg-[#41dfd7] h-6 sm:h-10 border border-slate-600">สิทธิ UC</td>
+                          <td colSpan="2" className="text-center bg-[#41dfd7] border border-slate-600">สิทธิจ่ายตรง</td>
+                          <td colSpan="2" className="text-center bg-[#41dfd7] h-6 sm:h-10 border border-slate-600">สิทธิประกันสังคม</td>
+                          <td colSpan="2" className="text-center bg-[#41dfd7] border border-slate-600">สิทธิอื่น ๆ</td>
+                          <td colSpan="2" className="text-center bg-[#41dfd7] h-6 sm:h-10 border border-slate-600">สิทธิ UC</td>
+                          <td colSpan="2" className="text-center bg-[#41dfd7] border border-slate-600">สิทธิจ่ายตรง</td>
+                          <td colSpan="2" className="text-center bg-[#41dfd7] h-6 sm:h-10 border border-slate-600">สิทธิประกันสังคม</td>
+                          <td colSpan="2" className="text-center bg-[#41dfd7] border border-slate-600">สิทธิอื่น ๆ</td>
+                          <td colSpan="2" className="text-center bg-[#41dfd7] h-6 sm:h-10 border border-slate-600">สิทธิ UC</td>
+                          <td colSpan="2" className="text-center bg-[#41dfd7] border border-slate-600">สิทธิจ่ายตรง</td>
+                          <td colSpan="2" className="text-center bg-[#41dfd7] h-6 sm:h-10 border border-slate-600">สิทธิประกันสังคม</td>
+                          <td colSpan="2" className="text-center bg-[#41dfd7] border border-slate-600">สิทธิอื่น ๆ</td>
                         </tr>
                         <tr>
                           {Array(40).fill(null).map((_, index) => (
                             <td
                               key={index}
-                              className="text-center h-6 sm:h-10 bg-[#95ece8] border border-slate-600 min-w-[80px] sm:min-w-[150px]"
+                              className="text-center h-6 sm:h-10 bg-[#41dfd7] border border-slate-600 min-w-[80px] sm:min-w-[150px]"
                             >
                               {index % 2 === 0 ? "จำนวน" : "เป็นเงิน"}
                             </td>
@@ -1509,34 +1542,34 @@ export default function Thaipadi() {
                     <table aria-label="data table" id="table22" className="w-full table-fixed border-collapse text-[0.5rem] sm:text-sm border border-slate-500">
                       <thead>
                         <tr>
-                          <td rowSpan="2" className="text-center h-10 bg-[#95ece8] z-10 border border-slate-600 w-[100px] sm:w-[180px]">
+                          <td rowSpan="2" className="text-center h-10 bg-[#41dfd7] z-10 border border-slate-600 w-[100px] sm:w-[180px]">
                             กลุ่มอาการ
                           </td>
-                          <td rowSpan="2" className="text-center h-10 bg-[#95ece8] z-10 border border-slate-600 w-[80px] sm:w-[100px]">
+                          <td rowSpan="2" className="text-center h-10 bg-[#41dfd7] z-10 border border-slate-600 w-[80px] sm:w-[100px]">
                             รายการยา
                           </td>
-                          <td colSpan="2" className="text-center h-10 bg-[#95ece8] border border-slate-600 w-[80px] sm:w-[100px]">
+                          <td colSpan="2" className="text-center h-10 bg-[#41dfd7] border border-slate-600 w-[80px] sm:w-[100px]">
                             รวมทุกวิชาชีพ
                           </td>
-                          <td colSpan="2" className="text-center h-10 bg-[#95ece8] border border-slate-600 w-[80px] sm:w-[100px]">
+                          <td colSpan="2" className="text-center h-10 bg-[#41dfd7] border border-slate-600 w-[80px] sm:w-[100px]">
                             แพทย์แผนปัจจุบัน
                           </td>
-                          <td colSpan="2" className="text-center h-10 bg-[#95ece8] border border-slate-600 w-[80px] sm:w-[100px]">
+                          <td colSpan="2" className="text-center h-10 bg-[#41dfd7] border border-slate-600 w-[80px] sm:w-[100px]">
                             แพทย์แผนไทย
                           </td>
-                          <td colSpan="2" className="text-center h-10 bg-[#95ece8] border border-slate-600 w-[80px] sm:w-[100px]">
+                          <td colSpan="2" className="text-center h-10 bg-[#41dfd7] border border-slate-600 w-[80px] sm:w-[100px]">
                             วิชาชีพอื่น ๆ
                           </td>
                         </tr>
                         <tr>
-                          <td className="text-center h-10 bg-[#95ece8] border border-slate-600 w-[80px] sm:w-[100px]">Dx</td>
-                          <td className="text-center h-10 bg-[#95ece8] border border-slate-600 w-[80px] sm:w-[100px]">Dx+Drug</td>
-                          <td className="text-center h-10 bg-[#95ece8] border border-slate-600 w-[80px] sm:w-[100px]">Dx</td>
-                          <td className="text-center h-10 bg-[#95ece8] border border-slate-600 w-[80px] sm:w-[100px]">Dx+Drug</td>
-                          <td className="text-center h-10 bg-[#95ece8] border border-slate-600 w-[80px] sm:w-[100px]">Dx</td>
-                          <td className="text-center h-10 bg-[#95ece8] border border-slate-600 w-[80px] sm:w-[100px]">Dx+Drug</td>
-                          <td className="text-center h-10 bg-[#95ece8] border border-slate-600 w-[80px] sm:w-[100px]">Dx</td>
-                          <td className="text-center h-10 bg-[#95ece8] border border-slate-600 w-[80px] sm:w-[100px]">Dx+Drug</td>
+                          <td className="text-center h-10 bg-[#41dfd7] border border-slate-600 w-[80px] sm:w-[100px]">Dx</td>
+                          <td className="text-center h-10 bg-[#41dfd7] border border-slate-600 w-[80px] sm:w-[100px]">Dx+Drug</td>
+                          <td className="text-center h-10 bg-[#41dfd7] border border-slate-600 w-[80px] sm:w-[100px]">Dx</td>
+                          <td className="text-center h-10 bg-[#41dfd7] border border-slate-600 w-[80px] sm:w-[100px]">Dx+Drug</td>
+                          <td className="text-center h-10 bg-[#41dfd7] border border-slate-600 w-[80px] sm:w-[100px]">Dx</td>
+                          <td className="text-center h-10 bg-[#41dfd7] border border-slate-600 w-[80px] sm:w-[100px]">Dx+Drug</td>
+                          <td className="text-center h-10 bg-[#41dfd7] border border-slate-600 w-[80px] sm:w-[100px]">Dx</td>
+                          <td className="text-center h-10 bg-[#41dfd7] border border-slate-600 w-[80px] sm:w-[100px]">Dx+Drug</td>
                         </tr>
                       </thead>
                       <tbody>
@@ -1640,7 +1673,7 @@ export default function Thaipadi() {
                             {hosXPDrug.icd10_01_all_099_prik}
                           </td>
                         </tr>
-                        <tr className={"bg-white"}>
+                        <tr className={"bg-[#befdfa]"}>
                           <td rowSpan="5" className="text-left pl-4  h-6 sm:h-10 border border-slate-400">
                             2. กลุ่มอาการไข้หวัด ไอ เสมหะ โควิด-19
                           </td>
@@ -1672,7 +1705,7 @@ export default function Thaipadi() {
                             {hosXPDrug.icd10_02_099_fah}
                           </td>
                         </tr>
-                        <tr className={"bg-white"}>
+                        <tr className={"bg-[#befdfa]"}>
                           <td className="text-center h-6 sm:h-10 border border-slate-400">
                             ยาประสะมะแว้ง
                           </td>
@@ -1689,7 +1722,7 @@ export default function Thaipadi() {
                             {hosXPDrug.icd10_02_099_maweang}
                           </td>
                         </tr>
-                        <tr className={"bg-white"}>
+                        <tr className={"bg-[#befdfa]"}>
                           <td className="text-center h-6 sm:h-10 border border-slate-400">
                             ยาแก้ไอมะขามป้อม
                           </td>
@@ -1706,7 +1739,7 @@ export default function Thaipadi() {
                             {hosXPDrug.icd10_02_099_pom}
                           </td>
                         </tr>
-                        <tr className={"bg-white"}>
+                        <tr className={"bg-[#befdfa]"}>
                           <td className="text-center h-6 sm:h-10 border border-slate-400">
                             ยาตรีผลา
                           </td>
@@ -1723,7 +1756,7 @@ export default function Thaipadi() {
                             {hosXPDrug.icd10_02_099_treepla}
                           </td>
                         </tr>
-                        <tr className={"bg-white"}>
+                        <tr className={"bg-[#befdfa]"}>
                           <td className="text-center h-6 sm:h-10 border border-slate-400">
                             ยาปราบชมพูทวีป
                           </td>
@@ -1806,7 +1839,7 @@ export default function Thaipadi() {
                             {hosXPDrug.icd10_03_099_khing}
                           </td>
                         </tr>
-                        <tr className={"bg-white"}>
+                        <tr className={"bg-[#befdfa]"}>
                           <td rowSpan="2" className="text-left pl-4  h-6 sm:h-10 border border-slate-400">
                             4. กลุ่มอาการริดสีดวงทวารหนัก และท้องผูก
                           </td>
@@ -1838,7 +1871,7 @@ export default function Thaipadi() {
                             {hosXPDrug.icd10_041_099_pet}
                           </td>
                         </tr>
-                        <tr className={"bg-white"}>
+                        <tr className={"bg-[#befdfa]"}>
                           <td className="text-center h-6 sm:h-10 border border-slate-400">
                             มะขามแขก
                           </td>
@@ -1933,7 +1966,7 @@ export default function Thaipadi() {
                             {hosXPDrug.icd10_05_099_intjak}
                           </td>
                         </tr>
-                        <tr className={"bg-white"}>
+                        <tr className={"bg-[#befdfa]"}>
                           <td rowSpan="2" className="text-left pl-4  h-6 sm:h-10 border border-slate-400">
                             6. กลุ่มอาการชาจากอัมพฤกษ์-อัมพาต
                           </td>
@@ -1965,7 +1998,7 @@ export default function Thaipadi() {
                             {hosXPDrug.icd10_06_099_lom}
                           </td>
                         </tr>
-                        <tr className={"bg-white"}>
+                        <tr className={"bg-[#befdfa]"}>
                           <td className="text-center h-6 sm:h-10 border border-slate-400">
                             ยาทำลายพระสุเมรุ
                           </td>
@@ -2101,7 +2134,7 @@ export default function Thaipadi() {
                             {hosXPDrug.icd10_074_099_thong}
                           </td>
                         </tr>
-                        <tr className={"bg-white"}>
+                        <tr className={"bg-[#befdfa]"}>
                           <td rowSpan="3" className="text-left pl-4  h-6 sm:h-10 border border-slate-400">
                             8. อาการนอนไม่หลับ
                           </td>
@@ -2133,7 +2166,7 @@ export default function Thaipadi() {
                             {hosXPDrug.icd10_08_099_suksai}
                           </td>
                         </tr>
-                        <tr className={"bg-white"}>
+                        <tr className={"bg-[#befdfa]"}>
                           <td className="text-center h-6 sm:h-10 border border-slate-400">
                             ยาหอมเทพจิตร
                           </td>
@@ -2150,7 +2183,7 @@ export default function Thaipadi() {
                             {hosXPDrug.icd10_08_099_jit}
                           </td>
                         </tr>
-                        <tr className={"bg-white"}>
+                        <tr className={"bg-[#befdfa]"}>
                           <td className="text-center h-6 sm:h-10 border border-slate-400">
                             น้ำมันกัญชา THC 20 mg/ml
                           </td>
@@ -2233,7 +2266,7 @@ export default function Thaipadi() {
                             {hosXPDrug.icd10_09_099_yellow}
                           </td>
                         </tr>
-                        <tr className={"bg-white"}>
+                        <tr className={"bg-[#befdfa]"}>
                           <td rowSpan="2" className="text-left pl-4  h-6 sm:h-10 border border-slate-400">
                             10. กลุ่มอาการเบื่ออาหาร
                           </td>
@@ -2265,7 +2298,7 @@ export default function Thaipadi() {
                             {hosXPDrug.icd10_10_099_mara}
                           </td>
                         </tr>
-                        <tr className={"bg-white"}>
+                        <tr className={"bg-[#befdfa]"}>
                           <td className="text-center h-6 sm:h-10 border border-slate-400">
                             น้ำมันกัญชา THC 20 mg/ml
                           </td>
@@ -2284,6 +2317,13 @@ export default function Thaipadi() {
                         </tr>
                       </tbody>
                     </table>
+                  </div>
+                </div>
+                <div className="flex justify-center items-start p-6 bg-white shadow-lg rounded-lg w-full mb-2">
+                  <div className="">
+                    <p className="text-[0.25rem] text-center sm:text-sm font-normal text-gray-800">โดย นายอารอฟัต สะบูดิง แพทย์แผนไทยชำนาญการ</p>
+                    <p className="text-[0.25rem] text-center sm:text-sm font-normal text-gray-800">โรงพยาบาลสุไหงปาดี จังหวัดนราธิวาส</p>
+                    <p className="text-[0.25rem] text-center sm:text-sm font-normal text-gray-800">tel: 090 209 9333 | e-mail: arofat.sa@gmail.com</p>
                   </div>
                 </div>
               </div>
