@@ -1,0 +1,190 @@
+{
+  "mainDep": "017",
+  "oic_n": "11",
+  "oic_c": "20",
+  "oic_o": "00",
+  "oic_l": "12",
+  "otc_o": 2,
+  "otc_l": 1,
+  "pcodeA2": "A2",
+  "pcodeUC": "UC",
+  "pcodeA7": "A7",
+  "providerCodes01": [
+    "01"
+  ],
+  "providerCodes081": [
+    "081"
+  ],
+  "icd10List01": [
+    "M791%",
+    "M626%",
+    "M5496%",
+    "M179%"
+  ],
+  "plaiCodes": [
+    "plaiCodes"
+  ],
+  "praCodes": [
+    "praCodes"
+  ],
+  "priangCodes": [
+    "priangCodes"
+  ],
+  "taraCodes": [
+    "taraCodes"
+  ],
+  "prikCodes": [
+    "prikCodes"
+  ],
+  "icd10List02": [
+    "J00%",
+    "U071%",
+    "U072%"
+  ],
+  "fahCodes": [
+    "fahCodes",
+    "fahCodes",
+    "fahCodes"
+  ],
+  "maweangCodes": [
+    "maweangCodes"
+  ],
+  "pomCodes": [
+    "pomCodes",
+    "pomCodes"
+  ],
+  "treeplaCodes": [
+    "treeplaCodes"
+  ],
+  "prapCodes": [
+    "prapCodes"
+  ],
+  "icd10List03": [
+    "R101%",
+    "K30%"
+  ],
+  "cuminCodes": [
+    "cuminCodes"
+  ],
+  "tardCodes": [
+    "tardCodes"
+  ],
+  "khingCodes": [
+    "khingCodes",
+    "khingCodes",
+    "khingCodes"
+  ],
+  "icd10List041": [
+    "K640%",
+    "K641%",
+    "K642%"
+  ],
+  "petCodes": [
+    "petCodes"
+  ],
+  "icd10List042": [
+    "K590%"
+  ],
+  "kotCodes": [
+    "kotCodes"
+  ],
+  "icd10List05": [
+    "R42%"
+  ],
+  "nawakotCodes": [
+    "nawakotCodes"
+  ],
+  "intjakCodes": [
+    "intjakCodes"
+  ],
+  "icd10List06": [
+    "G81%"
+  ],
+  "lomCodes": [
+    "lomCodes"
+  ],
+  "tamlaiCodes": [
+    "tamlaiCodes"
+  ],
+  "icd10List071": [
+    "B009%",
+    "B029%"
+  ],
+  "payayoCodes": [
+    "payayoCodes"
+  ],
+  "icd10List072": [
+    "T200%",
+    "T201%",
+    "T202%",
+    "T210%",
+    "T211%",
+    "T212%",
+    "T220%",
+    "T221%",
+    "T222%",
+    "T230%",
+    "T231%",
+    "T232%",
+    "T240%",
+    "T241%",
+    "T242%",
+    "T250%",
+    "T251%",
+    "T252%"
+  ],
+  "aloCodes": [
+    "aloCodes"
+  ],
+  "icd10List073": [
+    "S109%",
+    "S208%",
+    "S309%",
+    "S409%",
+    "S509%",
+    "S609%",
+    "S709%",
+    "S809%",
+    "S909%"
+  ],
+  "mangosteenCodes": [
+    "mangosteen"
+  ],
+  "icd10List074": [
+    "B360%",
+    "B353%",
+    "B354%",
+    "B356%"
+  ],
+  "thongCodes": [
+    "thongCodes"
+  ],
+  "icd10List08": [
+    "F510%",
+    "G470%"
+  ],
+  "suksaiCodes": [
+    "suksaiCodes"
+  ],
+  "jitCodes": [
+    "jitCodes"
+  ],
+  "thcCodes": [
+    "thc"
+  ],
+  "icd10List09": [
+    "A099%"
+  ],
+  "bananaCodes": [
+    "bananaCodes"
+  ],
+  "yellowCodes": [
+    "yellowCodes"
+  ],
+  "icd10List10": [
+    "R630%"
+  ],
+  "maraCodes": [
+    "maraCodes"
+  ]
+}
