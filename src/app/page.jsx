@@ -523,18 +523,18 @@ export default function Thaipadi() {
           <div className="app">
             <div className="flex bg-[#ebf7f7]">
               <div className="sub-content">
-                <div className="bg-white rounded-lg py-4 mt-4 mb-2 flex justify-center items-center relative px-4">
-                  <div>
-                    <p className="text-[0.5rem] sm:text-xl font-normal text-[#02b1a7]">
+                <div className="bg-white rounded-lg py-4 mt-4 mb-2 px-4">
+                    <div className="text-right">
+                      <IconButton
+                        className="text-gray-600 hover:text-gray-900"
+                        onClick={() => setOpen(true)}
+                      >
+                        <SettingsOutlinedIcon />
+                      </IconButton>
+                    </div>
+                    <p className="text-[0.5rem] sm:text-xl font-normal text-center text-[#02b1a7]">
                       รายงานตัวชี้วัดกลุ่มงานการแพทย์แผนไทยและแพทย์ทางเลือก
                     </p>
-                  </div>
-                  <IconButton
-                    className="absolute right-4 text-gray-600 hover:text-gray-900"
-                    onClick={() => setOpen(true)}
-                  >
-                    <SettingsOutlinedIcon />
-                  </IconButton>
                 </div>
                 <Dialog
                   open={open}
