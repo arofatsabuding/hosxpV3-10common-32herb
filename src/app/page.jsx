@@ -8,7 +8,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import "@fontsource/sarabun";
 import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";
-import { Dialog, Grid, TextField, Button, Divider, Typography, Card, CardContent, IconButton } from "@mui/material";
+import { Dialog, Grid, TextField, Button, Card, CardContent, IconButton } from "@mui/material";
 import { InfoOutlined } from "@mui/icons-material";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import Swal from "sweetalert2";
@@ -520,25 +520,23 @@ export default function Thaipadi() {
     }
   };
 
-  const [version, setVersion] = useState("");
-
   const checkVersion = async () => {
     try {
       const localRes = await fetch("/version.json");
       const localData = await localRes.json();
       const currentVersion = localData.version;
-      console.log(currentVersion)
       const res = await fetch("/api/version");
       const data = await res.json();
       const latestVersion = data.version || "ไม่พบข้อมูลเวอร์ชัน";
 
       if (latestVersion !== currentVersion) {
         Swal.fire({
-          title: "มีเวอร์ชันใหม่!",
-          text: `เวอร์ชันล่าสุด: ${latestVersion}\nกรุณาอัปเดตแอปของคุณ`,
-          icon: "warning",
-          confirmButtonText: "ตกลง",
-        });
+          title: "พบเวอร์ชันใหม่!",
+          html: `เวอร์ชันล่าสุด: <strong>${latestVersion}</strong><br>
+           เวอร์ชันปัจจุบันของคุณ: <strong>${currentVersion}</strong><br>`,
+          icon: "info",
+          confirmButtonText: "ปิด",
+        })
       } else {
         Swal.fire({
           title: "แอปของคุณเป็นเวอร์ชันล่าสุด",
