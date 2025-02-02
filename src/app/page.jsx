@@ -150,6 +150,7 @@ export default function Thaipadi() {
     });
 
     const date = { startDate, endDate };
+
     const serviceData = {
       startDate,
       endDate,
@@ -164,23 +165,168 @@ export default function Thaipadi() {
       pcodeUC: pcodeUC,
       pcodeA7: pcodeA7
     }
+
+    const drug01 = {
+      startDate,
+      endDate,
+      providerCodes01,
+      providerCodes081,
+      icd10List01,
+      plaiCodes,
+      praCodes,
+      priangCodes,
+      taraCodes,
+      prikCodes
+    }
+
+    const drug02 = {
+      startDate,
+      endDate,
+      providerCodes01,
+      providerCodes081,
+      icd10List02,
+      fahCodes,
+      maweangCodes,
+      pomCodes,
+      treeplaCodes,
+      prapCodes
+    }
+
+    const drug03 = {
+      startDate,
+      endDate,
+      providerCodes01,
+      providerCodes081,
+      icd10List03,
+      cuminCodes,
+      tardCodes,
+      khingCodes
+    }
+
+    const drug041 = {
+      startDate,
+      endDate,
+      providerCodes01,
+      providerCodes081,
+      icd10List041,
+      petCodes
+    }
+
+    const drug042 = {
+      startDate,
+      endDate,
+      providerCodes01,
+      providerCodes081,
+      icd10List042,
+      kotCodes
+    }
+
+    const drug05 = {
+      startDate,
+      endDate,
+      providerCodes01,
+      providerCodes081,
+      icd10List05,
+      nawakotCodes,
+      intjakCodes,
+      khingCodes
+    }
+
+    const drug06 = {
+      startDate,
+      endDate,
+      providerCodes01,
+      providerCodes081,
+      icd10List06,
+      lomCodes,
+      tamlaiCodes
+    }
+
+    const drug071 = {
+      startDate,
+      endDate,
+      providerCodes01,
+      providerCodes081,
+      icd10List071,
+      payayoCodes
+    }
+
+    const drug072 = {
+      startDate,
+      endDate,
+      providerCodes01,
+      providerCodes081,
+      icd10List072,
+      aloCodes
+    }
+
+    const drug073 = {
+      startDate,
+      endDate,
+      providerCodes01,
+      providerCodes081,
+      icd10List073,
+      mangosteenCodes
+    }
+
+    const drug074 = {
+      startDate,
+      endDate,
+      providerCodes01,
+      providerCodes081,
+      icd10List074,
+      thongCodes
+    }
+
+    const drug08 = {
+      startDate,
+      endDate,
+      providerCodes01,
+      providerCodes081,
+      icd10List08,
+      suksaiCodes,
+      jitCodes,
+      thcCodes
+    }
+
+    const drug09 = {
+      startDate,
+      endDate,
+      providerCodes01,
+      providerCodes081,
+      icd10List09,
+      fahCodes,
+      bananaCodes,
+      yellowCodes
+    }
+
+    const drug10 = {
+      startDate,
+      endDate,
+      providerCodes01,
+      providerCodes081,
+      icd10List10,
+      maraCodes,
+      thcCodes
+    }
+
     try {
       const [ServiceData, Drug01, Drug02, Drug03, Drug041, Drug042, Drug05, Drug06, Drug071, Drug072, Drug073, Drug074, Drug08, Drug09, Drug10] = await Promise.all([
         axios.post(`/api/kpi-service`, serviceData, { headers: { "Content-Type": "application/json" }, signal: controller.signal }),
-        axios.post(`/api/kpi-drug01`, date, { headers: { "Content-Type": "application/json" }, signal: controller.signal }),
-        axios.post(`/api/kpi-drug02`, date, { headers: { "Content-Type": "application/json" }, signal: controller.signal }),
-        axios.post(`/api/kpi-drug03`, date, { headers: { "Content-Type": "application/json" }, signal: controller.signal }),
-        axios.post(`/api/kpi-drug041`, date, { headers: { "Content-Type": "application/json" }, signal: controller.signal }),
-        axios.post(`/api/kpi-drug042`, date, { headers: { "Content-Type": "application/json" }, signal: controller.signal }),
-        axios.post(`/api/kpi-drug05`, date, { headers: { "Content-Type": "application/json" }, signal: controller.signal }),
-        axios.post(`/api/kpi-drug06`, date, { headers: { "Content-Type": "application/json" }, signal: controller.signal }),
-        axios.post(`/api/kpi-drug071`, date, { headers: { "Content-Type": "application/json" }, signal: controller.signal }),
-        axios.post(`/api/kpi-drug072`, date, { headers: { "Content-Type": "application/json" }, signal: controller.signal }),
-        axios.post(`/api/kpi-drug073`, date, { headers: { "Content-Type": "application/json" }, signal: controller.signal }),
-        axios.post(`/api/kpi-drug074`, date, { headers: { "Content-Type": "application/json" }, signal: controller.signal }),
-        axios.post(`/api/kpi-drug08`, date, { headers: { "Content-Type": "application/json" }, signal: controller.signal }),
-        axios.post(`/api/kpi-drug09`, date, { headers: { "Content-Type": "application/json" }, signal: controller.signal }),
-        axios.post(`/api/kpi-drug10`, date, { headers: { "Content-Type": "application/json" }, signal: controller.signal })
+        axios.post(`/api/kpi-drug01`, drug01, { headers: { "Content-Type": "application/json" }, signal: controller.signal }),
+        axios.post(`/api/kpi-drug02`, drug02, { headers: { "Content-Type": "application/json" }, signal: controller.signal }),
+        axios.post(`/api/kpi-drug03`, drug03, { headers: { "Content-Type": "application/json" }, signal: controller.signal }),
+        axios.post(`/api/kpi-drug041`, drug041, { headers: { "Content-Type": "application/json" }, signal: controller.signal }),
+        axios.post(`/api/kpi-drug042`, drug042, { headers: { "Content-Type": "application/json" }, signal: controller.signal }),
+        axios.post(`/api/kpi-drug05`, drug05, { headers: { "Content-Type": "application/json" }, signal: controller.signal }),
+        axios.post(`/api/kpi-drug06`, drug06, { headers: { "Content-Type": "application/json" }, signal: controller.signal }),
+        axios.post(`/api/kpi-drug071`, drug071, { headers: { "Content-Type": "application/json" }, signal: controller.signal }),
+        axios.post(`/api/kpi-drug072`, drug072, { headers: { "Content-Type": "application/json" }, signal: controller.signal }),
+        axios.post(`/api/kpi-drug073`, drug073, { headers: { "Content-Type": "application/json" }, signal: controller.signal }),
+        axios.post(`/api/kpi-drug074`, drug074, { headers: { "Content-Type": "application/json" }, signal: controller.signal }),
+        axios.post(`/api/kpi-drug08`, drug08, { headers: { "Content-Type": "application/json" }, signal: controller.signal }),
+        axios.post(`/api/kpi-drug09`, drug09, { headers: { "Content-Type": "application/json" }, signal: controller.signal }),
+        axios.post(`/api/kpi-drug10`, drug10, { headers: { "Content-Type": "application/json" }, signal: controller.signal })
       ]);
       clearTimeout(timeout)
       setHosXPService(ServiceData.data); // แสดงข้อมูลที่กรองและปรับปรุงแล้ว

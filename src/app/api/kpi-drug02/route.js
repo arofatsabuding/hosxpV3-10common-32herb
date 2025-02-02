@@ -5,18 +5,10 @@ import dayjs from "dayjs"; // ✅ ต้อง import dayjs
 export async function POST(request) {
   const connection = await pool.getConnection();
   const body = await request.json();
-  const { startDate, endDate } = body;
+  const { startDate, endDate,providerCodes01, providerCodes081, icd10List02, fahCodes, maweangCodes, pomCodes, treeplaCodes, prapCodes  } = body;
   const olddate = dayjs(startDate).format("YYYY-MM-DD");
   const lastdate = dayjs(endDate).format("YYYY-MM-DD");
-  const providerCodes01 = ["01"]
-  const providerCodes081 = ["081", "084"]
   const providerCodes099 = [...providerCodes01, ...providerCodes081]
-  const icd10List02 = ["J00%","U071%","U072%"]
-  const fahCodes = ['1640036','1640050','1650019']
-  const maweangCodes = ["1570018"]
-  const pomCodes = ['1550002','1660019']
-  const treeplaCodes = ["1580014"]
-  const prapCodes = ["1630047"]
 
   try {
     const likeConditions = icd10List02.map(() => "od.icd10 LIKE ?").join(" OR ");
