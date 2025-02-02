@@ -9,7 +9,7 @@ import "@fontsource/sarabun";
 import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";
 import { Dialog, Grid, TextField, Button, Divider, Typography, Card, CardContent, IconButton } from "@mui/material";
-
+import { InfoOutlined } from "@mui/icons-material";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import Swal from "sweetalert2";
 
@@ -520,6 +520,43 @@ export default function Thaipadi() {
     }
   };
 
+  const [version, setVersion] = useState("");
+
+  const checkVersion = async () => {
+    try {
+      const localRes = await fetch("/version.json");
+      const localData = await localRes.json();
+      const currentVersion = localData.version;
+      console.log(currentVersion)
+      const res = await fetch("/api/version");
+      const data = await res.json();
+      const latestVersion = data.version || "ไม่พบข้อมูลเวอร์ชัน";
+
+      if (latestVersion !== currentVersion) {
+        Swal.fire({
+          title: "มีเวอร์ชันใหม่!",
+          text: `เวอร์ชันล่าสุด: ${latestVersion}\nกรุณาอัปเดตแอปของคุณ`,
+          icon: "warning",
+          confirmButtonText: "ตกลง",
+        });
+      } else {
+        Swal.fire({
+          title: "แอปของคุณเป็นเวอร์ชันล่าสุด",
+          text: `คุณใช้เวอร์ชัน: ${latestVersion}`,
+          icon: "success",
+          confirmButtonText: "ตกลง",
+        });
+      }
+    } catch (error) {
+      Swal.fire({
+        title: "เกิดข้อผิดพลาด",
+        text: "ไม่สามารถดึงข้อมูลเวอร์ชันได้",
+        icon: "error",
+        confirmButtonText: "ลองใหม่อีกครั้ง",
+      });
+    }
+  };
+
   return (
     <>
       {
@@ -530,17 +567,23 @@ export default function Thaipadi() {
             <div className="flex bg-[#ebf7f7]">
               <div className="sub-content">
                 <div className="bg-white rounded-lg py-4 mt-4 mb-2 px-4">
-                    <div className="text-right">
-                      <IconButton
-                        className="text-gray-600 hover:text-gray-900"
-                        onClick={() => setOpen(true)}
-                      >
-                        <SettingsOutlinedIcon />
-                      </IconButton>
-                    </div>
-                    <p className="text-[0.5rem] sm:text-xl font-normal text-center text-[#02b1a7]">
-                      รายงานตัวชี้วัดกลุ่มงานการแพทย์แผนไทยและแพทย์ทางเลือก
-                    </p>
+                  <div className="flex justify-end items-center text-right">
+                    <IconButton
+                      className="text-gray-600 hover:text-gray-900"
+                      onClick={() => setOpen(true)}
+                    >
+                      <SettingsOutlinedIcon />
+                    </IconButton>
+                    <IconButton
+                      className="text-gray-600 hover:text-gray-900"
+                      onClick={checkVersion}
+                    >
+                      <InfoOutlined />
+                    </IconButton>
+                  </div>
+                  <p className="text-[0.5rem] sm:text-xl font-normal text-center text-[#02b1a7]">
+                    รายงานตัวชี้วัดกลุ่มงานการแพทย์แผนไทยและแพทย์ทางเลือก
+                  </p>
                 </div>
                 <Dialog
                   open={open}
