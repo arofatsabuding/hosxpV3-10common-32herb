@@ -508,11 +508,17 @@ export default function Thaipadi() {
     try {
       const response = await axios.put("/api/data", data);
       console.log("Updated Data:", response.data);
+      Swal.fire({
+        icon: "success",
+        title: "บันทึกสำเร็จ",
+        timer: 2000,
+        showConfirmButton: false,
+      });
+      setOpen(false);
     } catch (error) {
       console.error("Error updating data:", error.response ? error.response.data : error.message);
     }
   };
-
 
   return (
     <>
