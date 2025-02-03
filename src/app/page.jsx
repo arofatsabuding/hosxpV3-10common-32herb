@@ -7,9 +7,12 @@ import { th } from "date-fns/locale";
 import "react-datepicker/dist/react-datepicker.css";
 import "@fontsource/sarabun";
 import * as XLSX from "xlsx";
+import dayjs from "dayjs";
+import "dayjs/locale/th"; // ตั้งค่าภาษาไทย
 import { saveAs } from "file-saver";
 import { Dialog, Grid, TextField, Button, Card, CardContent, IconButton } from "@mui/material";
 import { InfoOutlined } from "@mui/icons-material";
+import { StorageOutlined } from "@mui/icons-material";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import Swal from "sweetalert2";
 
@@ -148,8 +151,6 @@ export default function Thaipadi() {
         Swal.showLoading(); // แสดงไอคอนโหลด
       }
     });
-
-    const date = { startDate, endDate };
 
     const serviceData = {
       startDate,
@@ -555,6 +556,46 @@ export default function Thaipadi() {
     }
   };
 
+  const testConnection = async () => {
+    try {
+      const response = await fetch('/api/test-db');
+      const data = await response.json();
+
+      if (data.success) {
+        const formattedTime = dayjs(data.time)
+          .locale("th")
+          .add(543, "year")
+          .format("DD-MM-YYYY HH:mm:ss");
+
+        Swal.fire({
+          icon: "success",
+          title: "เชื่อมต่อสำเร็จ!",
+          html: `
+              <p style="margin-bottom: 15px;">ฐานข้อมูลเชื่อมต่อสำเร็จ</p>
+              <p style="margin-bottom: 15px;"><b>วันที่ ${formattedTime} น.</b></p>
+          `,
+          confirmButtonText: "ตกลง",
+        });
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "เชื่อมต่อไม่สำเร็จ",
+          text: "ไม่สามารถเชื่อมต่อกับฐานข้อมูลได้",
+          confirmButtonText: "ลองอีกครั้ง",
+        });
+      }
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "เกิดข้อผิดพลาด",
+        text: "ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์ได้",
+        confirmButtonText: "ปิด",
+      });
+    }
+  };
+
+
+
   return (
     <>
       {
@@ -577,6 +618,12 @@ export default function Thaipadi() {
                       onClick={checkVersion}
                     >
                       <InfoOutlined />
+                    </IconButton>
+                    <IconButton
+                      className="text-gray-600 hover:text-gray-900"
+                      onClick={testConnection}
+                    >
+                      <StorageOutlined />
                     </IconButton>
                   </div>
                   <p className="text-[0.5rem] sm:text-xl font-normal text-center text-[#02b1a7]">
