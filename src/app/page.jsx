@@ -516,6 +516,7 @@ export default function Thaipadi() {
         showConfirmButton: false,
       });
       setOpen(false);
+      fetchSettingData()
     } catch (error) {
       console.error("Error updating data:", error.response ? error.response.data : error.message);
     }
